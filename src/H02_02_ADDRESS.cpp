@@ -46,4 +46,15 @@ namespace addressStd {
         std::cout << "Country: " << m_country << "\n";
         return;
     }
+    // Encrypt Address
+    std::string Address::encryptAddress() {
+        std::stringstream sObj;
+        sObj << m_line1 << "/" << m_line2 << "/" << m_city << "/" << m_state << "/" << m_pinCode << "/" << m_country;
+        std::string encryptedAddress;
+        getline(sObj, encryptedAddress);
+        for (auto &i : encryptedAddress)
+            if (i == ',')
+                i = '^';
+        return encryptedAddress;
+    }
 }// namespace addressStd
