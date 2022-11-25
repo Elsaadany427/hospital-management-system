@@ -3,7 +3,6 @@
 //
 
 #include "../include/H01_01_PERSON.h"
-#include <bits/stdc++.h>
 namespace personStd {
     // Initialized Constructor
     Person::Person() {
