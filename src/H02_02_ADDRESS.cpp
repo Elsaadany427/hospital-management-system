@@ -30,4 +30,20 @@ namespace addressStd {
         getline(std::cin >> std::ws, m_country);
         return;
     }
-}
+    // Print Address
+    void Address::printAddress() {
+        std::cout << "Line 1: " << m_line1 << "\n";
+        if (!m_line2.empty())
+            std::cout << "                  "
+                      << "Line 2: " << m_line2 << "\n";
+        std::cout << "                  ";
+        std::cout << "City: " << m_city << "\n";
+        std::cout << "                  ";
+        std::cout << "State: " << m_state << "\n";
+        std::cout << "                  ";
+        std::cout << "Pin Code: " << m_pinCode << "\n";
+        std::cout << "                  ";
+        std::cout << "Country: " << m_country << "\n";
+        return;
+    }
+}// namespace addressStd
