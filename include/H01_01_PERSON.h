@@ -10,7 +10,7 @@ namespace personStd {
     class Person {
     private:
         int m_id;
-        std::string m_firstName;
+        std::string m_firstName, m_lastName;
         char m_gender;
         int16_t m_age;
         std::string m_mobNumber;
