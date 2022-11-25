@@ -20,7 +20,7 @@ namespace addressStd {
         void takeAddress();
         void printAddress();
         std::string encryptAddress();
-        void decryptAddress(std::string t_str);
+        void decryptAddress(std::string t_encryptedAddress);
     };
 }// namespace addressStd
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H02_02_ADDRESS_H

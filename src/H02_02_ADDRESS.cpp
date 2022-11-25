@@ -52,9 +52,28 @@ namespace addressStd {
         sObj << m_line1 << "/" << m_line2 << "/" << m_city << "/" << m_state << "/" << m_pinCode << "/" << m_country;
         std::string encryptedAddress;
         getline(sObj, encryptedAddress);
-        for (auto &i : encryptedAddress)
+        for (auto &i: encryptedAddress)
             if (i == ',')
-                i = '^';
+                i = '~';
         return encryptedAddress;
+    }
+    void Address::decryptAddress(std::string t_encryptedAddress) {
+        std::stringstream s(t_encryptedAddress);
+
+        getline(s, m_line1, '/');
+        for (auto &i: m_line1)
+            if (i == '~')
+                i = ',';
+
+        getline(s, m_line2, '/');
+        for (auto &i: m_line2)
+            if (i == '~')
+                i = ',';
+
+        getline(s, m_city, '/');
+        getline(s, m_state, '/');
+        getline(s, m_pinCode, '/');
+        getline(s, m_country, '/');
+        return;
     }
 }// namespace addressStd
