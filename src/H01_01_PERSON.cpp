@@ -42,7 +42,8 @@ namespace personStd {
         // Getting phone number
         std::cout << "\nEnter mobile number (with country code): \n";
         getline(std::cin >> std::ws, m_mobNumber);
-
+        // Getting Address
+        m_address.takeAddress();
         return;
     }
     void Person::printDetails() {
@@ -55,6 +56,8 @@ namespace personStd {
         std::cout << "Gender          : " << m_gender << "\n";
         std::cout << "Age             : " << m_age << "\n";
         std::cout << "Mobile          : " << m_mobNumber << "\n";
+        std::cout << "Address         : ";
+        m_address.printAddress();
         return;
     }
     void Person::printDetailsFromHistory() {
@@ -67,6 +70,8 @@ namespace personStd {
         std::cout << "Gender          : " << m_gender << "\n";
         std::cout << "Age             : " << m_age << "\n";
         std::cout << "Mobile          : " << m_mobNumber << "\n";
+        std::cout << "Address         : ";
+        m_address.printAddress();
         return;
     }
 }// namespace personStd
