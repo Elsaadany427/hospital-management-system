@@ -46,4 +46,28 @@ namespace personStd {
 
         return;
     }
+    void Person::printDetails() {
+        if (m_id == -1)
+            return;
+
+        std::cout << "\nDetails:\n";
+        std::cout << "ID              : " << m_id << "\n";
+        std::cout << "Full Name       : " << m_firstName << " " << m_lastName << "\n";
+        std::cout << "Gender          : " << m_gender << "\n";
+        std::cout << "Age             : " << m_age << "\n";
+        std::cout << "Mobile          : " << m_mobNumber << "\n";
+        return;
+    }
+    void Person::printDetailsFromHistory() {
+        if (m_id == -1)
+            return;
+
+        std::cout << "\nDetails:\n";
+        std::cout << "ID              : " << m_id << "\n";
+        std::cout << "Full Name       : " << m_firstName << " " << m_lastName << "\n";
+        std::cout << "Gender          : " << m_gender << "\n";
+        std::cout << "Age             : " << m_age << "\n";
+        std::cout << "Mobile          : " << m_mobNumber << "\n";
+        return;
+    }
 }// namespace personStd
