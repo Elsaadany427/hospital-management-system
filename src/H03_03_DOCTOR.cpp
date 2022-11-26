@@ -45,4 +45,18 @@ namespace doctorStd {
         f.close();
         return;
     }
+    void Doctor::saveMap() {
+        std::fstream f;
+        f.open("./data/temp.csv", std::ios::out);
+        // `le first line containing column headers:
+        f << "doctorId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked\n";
+//        for (auto i : hospital::doctorsList)
+//            f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
+//              << "," << i.second.age << "," << i.second.mobNumber << "," << i.second.add.addToStr()
+//              << "," << i.second.type << "," << i.second.appointmentsBooked << endl;
+        f.close();
+        remove("./data/doctors.csv");
+        rename("./data/temp.csv", "./data/doctors.csv");
+        return;
+    }
 }
