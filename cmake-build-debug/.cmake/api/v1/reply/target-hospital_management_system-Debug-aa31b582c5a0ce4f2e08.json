@@ -86,10 +86,11 @@
 			},
 			"sourceIndexes" : 
 			[
-				3,
 				4,
 				5,
-				6
+				6,
+				7,
+				8
 			]
 		}
 	],
@@ -124,22 +125,29 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				3,
 				4,
 				5,
-				6
+				6,
+				7,
+				8
 			]
 		}
 	],
 	"sources" : 
 	[
+		{
+			"backtrace" : 1,
+			"path" : "include/H00_00_GLOBAL.h",
+			"sourceGroupIndex" : 0
+		},
 		{
 			"backtrace" : 1,
 			"path" : "include/H01_01_PERSON.h",
@@ -154,6 +162,12 @@
 			"backtrace" : 1,
 			"path" : "include/H03_03_DOCTOR.h",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/H00_00_GLOBAL.cpp",
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
