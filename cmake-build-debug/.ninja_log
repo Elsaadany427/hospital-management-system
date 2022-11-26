@@ -1,9 +1,7 @@
 # ninja log v5
-2	1466	1669455457889170300	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
+4	1387	1669456110227610600	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
 2553	3055	1669452821997728600	hospital_management_system	eb5d11a38490c82c
 1	2484	1669452821426047500	CMakeFiles/hospital_management_system.dir/src/H02_02_ADDRESS.cpp.o	5151595c70e62aec
 1	2552	1669452821492535900	CMakeFiles/hospital_management_system.dir/src/H01_01_PERSON.cpp.o	7b4bca1317f43df1
 2	1553	1669455356692874100	CMakeFiles/hospital_management_system.dir/src/H00_00_GLOBAL.cpp.o	5d657e032c4e320e
 3	2485	1669452821424439900	CMakeFiles/hospital_management_system.dir/main.cpp.o	61d12973dc3e212e
-3	1321	1669455601567778100	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
-4	1387	1669456110227610600	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
