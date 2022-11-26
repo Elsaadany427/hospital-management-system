@@ -1,0 +1,4 @@
+/snap/clion/209/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/209/bin/ninja/linux/ninja -G Ninja -S /media/elsaadany/Data/OOP/Example/hospital-management-system -B /media/elsaadany/Data/OOP/Example/hospital-management-system/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /media/elsaadany/Data/OOP/Example/hospital-management-system/cmake-build-debug
