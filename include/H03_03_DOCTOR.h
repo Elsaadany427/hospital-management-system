@@ -10,8 +10,8 @@
 namespace doctorStd {
     class Doctor : public personStd::Person {
     private:
-        std::string type;
-        int appointmentBooked;
+        std::string m_type;
+        int m_appointmentBooked;
 
     public:
         Doctor();
@@ -20,7 +20,7 @@ namespace doctorStd {
         void addPerson();
         void printDetails();
         void printDetailsFromHistory();
-        void getDetails(int t_rec = 0) = 0;
+        void getDetails(int t_rec = 0);
         void getDetailsFromHistory();
         void removePerson();
     };
