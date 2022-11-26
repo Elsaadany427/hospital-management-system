@@ -4,12 +4,12 @@
 
 #ifndef HOSPITAL_MANAGEMENT_SYSTEM_H01_01_PERSON_H
 #define HOSPITAL_MANAGEMENT_SYSTEM_H01_01_PERSON_H
-#include <bits/stdc++.h>
 #include "H02_02_ADDRESS.h"
+#include <bits/stdc++.h>
 
 namespace personStd {
     class Person {
-    private:
+    protected:
         int m_id;
         std::string m_firstName, m_lastName;
         char m_gender;
