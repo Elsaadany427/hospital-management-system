@@ -10,6 +10,8 @@ include_directories(src)
 add_executable(hospital_management_system
         include/H01_01_PERSON.h
         include/H02_02_ADDRESS.h
+        include/H03_03_DOCTOR.h
         src/H01_01_PERSON.cpp
         src/H02_02_ADDRESS.cpp
+        src/H03_03_DOCTOR.cpp
         main.cpp)
