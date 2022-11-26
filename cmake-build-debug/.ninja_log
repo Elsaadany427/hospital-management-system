@@ -4,3 +4,6 @@
 1	2484	1669452821426047500	CMakeFiles/hospital_management_system.dir/src/H02_02_ADDRESS.cpp.o	5151595c70e62aec
 1	2552	1669452821492535900	CMakeFiles/hospital_management_system.dir/src/H01_01_PERSON.cpp.o	7b4bca1317f43df1
 3	2485	1669452821424439900	CMakeFiles/hospital_management_system.dir/main.cpp.o	61d12973dc3e212e
+3	1767	1669454948489882900	CMakeFiles/hospital_management_system.dir/src/H00_00_GLOBAL.cpp.o	5d657e032c4e320e
+3	1770	1669454948492018400	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
+2	1342	1669454997768760900	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd

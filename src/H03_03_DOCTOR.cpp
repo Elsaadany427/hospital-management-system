@@ -3,6 +3,8 @@
 //
 
 #include "H03_03_DOCTOR.h"
+#include "H00_00_GLOBAL.h"
+
 namespace doctorStd {
     Doctor::Doctor() {
         m_id = -1;
@@ -34,11 +36,11 @@ namespace doctorStd {
             getline(s, address, ',');
             getline(s, d.m_type, ',');
             getline(s, appointmentsBooked, ',');
-            d.m_id = strToNum(doctorId);
+            d.m_id = globalStd::strToNum(doctorId);
             d.m_gender = gender[0];
-            d.m_age = strToNum(age);
+            d.m_age = globalStd::strToNum(age);
             d.m_address.decryptAddress(address);
-            d.m_appointmentBooked = strToNum(appointmentsBooked);
+            d.m_appointmentBooked = globalStd::strToNum(appointmentsBooked);
         }
         f.close();
         return;
