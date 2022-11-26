@@ -59,4 +59,24 @@ namespace doctorStd {
         rename("./data/temp.csv", "./data/doctors.csv");
         return;
     }
+    void Doctor::addPerson() {
+        //18 and 65 are the age limits for registration of a new doctor;
+        personStd::Person::addPerson(18, 65);
+        if ((m_age < 18) || (m_age > 65))
+            return;
+        std::cout << "\nEnter the type of the doctor: \n";
+        getline(std::cin >> std::ws, m_type);
+        // checking the hospital list
+        // code soon
+        //creating a fstream object to read/write from/to files;
+        std::fstream f;
+        //creating a record in doctorsHistory.csv;
+        f.open("./data/doctorsHistory.csv", std::ios::app);
+        f << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_type << ",N,NA" << "\n";
+        f.close();
+
+        std::cout << "\n"
+             << m_firstName << " " << m_lastName << " registered successfully!\n";
+        std::cout << "Their ID is: " << m_id << "\n";
+    }
 }
