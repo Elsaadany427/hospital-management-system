@@ -182,4 +182,7 @@ namespace nurseStd {
             }
         }
     }
+    void Nurse::getDetailsFromHistory() {
+        // will implement soon
+    }
 }// namespace nurseStd
