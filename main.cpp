@@ -18,12 +18,7 @@ const int MOD = 1e9 + 7;
 
 
 void solve(){
-    // For Testing
-    nurseStd::Nurse n;
-    n.fillMap();
-    n.removePerson();
-    n.saveMap();
-    n.printDetails();
+
 }
 int main(){
 
