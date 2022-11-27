@@ -13,9 +13,11 @@ add_executable(hospital_management_system
         include/H02_02_ADDRESS.h
         include/H03_03_DOCTOR.h
         include/H04_04_HOSPITAL.h
+        include/H05_05_NURSE.h
         src/H00_00_GLOBAL.cpp
         src/H01_01_PERSON.cpp
         src/H02_02_ADDRESS.cpp
         src/H03_03_DOCTOR.cpp
         src/H04_04_HOSPITAL.cpp
+        src/H05_05_NURSE.cpp
         main.cpp)
