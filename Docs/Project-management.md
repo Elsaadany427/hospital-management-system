@@ -30,3 +30,16 @@ A hospital management system, made using object-oriented programming and file ha
 - Create appropriate methods to take address as input from the user-side, encrypt (not-really convert it into another format) 
  it into a string to store it into a single cell of a CSV file, decrypt encrypted address string and output the address in a structured manner;
 - Create an instance of class address in class person to store the address.
+
+<br>
+
+####  GOAL 3 :&nbsp; &nbsp; Add doctors
+<hr>
+
+#### OBJECTIVES :
+- Derive the classes doctor from the class person;
+- Define the abstract methods declared inside class person in doctor;
+re-define some methods inside sub-classes which were already defined in the class person, if required;
+- Class doctor:
+    - Add a private field string type; to store the type of the doctor;
+    - Add a private field int appointmentsBooked to store the number of appointments booked with the doctor for the day;

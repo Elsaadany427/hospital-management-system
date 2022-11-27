@@ -19,8 +19,8 @@ namespace addressStd {
         Address();
         void takeAddress();
         void printAddress();
-        std::string encryptAddress();
-        void decryptAddress(std::string t_encryptedAddress);
+        std::string encryptAddress() const;
+        void decryptAddress(const std::string& t_encryptedAddress);
     };
 }// namespace addressStd
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H02_02_ADDRESS_H
