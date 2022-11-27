@@ -28,7 +28,6 @@ namespace addressStd {
         getline(std::cin >> std::ws, m_pinCode);
         std::cout << "\nCountry:\n";
         getline(std::cin >> std::ws, m_country);
-        return;
     }
     // Print Address
     void Address::printAddress() {
@@ -44,7 +43,6 @@ namespace addressStd {
         std::cout << "Pin Code: " << m_pinCode << "\n";
         std::cout << "                  ";
         std::cout << "Country: " << m_country << "\n";
-        return;
     }
     // Encrypt Address
     std::string Address::encryptAddress() const {
@@ -74,6 +72,5 @@ namespace addressStd {
         getline(s, m_state, '/');
         getline(s, m_pinCode, '/');
         getline(s, m_country, '/');
-        return;
     }
 }// namespace addressStd

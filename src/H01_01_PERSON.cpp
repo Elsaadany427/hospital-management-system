@@ -7,6 +7,9 @@ namespace personStd {
     // Initialized Constructor
     Person::Person() {
         m_id = -1;
+        m_gender = {};
+        m_age = {};
+        m_category = {};
     }
     // Adding person
     void Person::addPerson(int16_t t_minAge, int16_t t_maxAge) {
@@ -44,7 +47,6 @@ namespace personStd {
         getline(std::cin >> std::ws, m_mobNumber);
         // Getting Address
         m_address.takeAddress();
-        return;
     }
     void Person::printDetails() {
         if (m_id == -1)
@@ -58,7 +60,6 @@ namespace personStd {
         std::cout << "Mobile          : " << m_mobNumber << "\n";
         std::cout << "Address         : ";
         m_address.printAddress();
-        return;
     }
     void Person::printDetailsFromHistory() {
         if (m_id == -1)
@@ -72,6 +73,5 @@ namespace personStd {
         std::cout << "Mobile          : " << m_mobNumber << "\n";
         std::cout << "Address         : ";
         m_address.printAddress();
-        return;
     }
 }// namespace personStd

@@ -23,10 +23,12 @@ namespace personStd {
         Person();
         virtual void fillMap() = 0;
         virtual void saveMap() = 0;
-        virtual void addPerson(int16_t t_minAge = 0, int16_t t_maxAge = 1000);
+        virtual void addPerson(int16_t t_minAge, int16_t t_maxAge);
+        virtual void addPerson(){addPerson(0, 1000);};
         virtual void printDetails();
         virtual void printDetailsFromHistory();
-        virtual void getDetails(int t_rec = 0) = 0;
+        virtual void getDetails(int t_rec) = 0;
+        virtual void getDetails(){getDetails(0);};
         virtual void getDetailsFromHistory() = 0;
         virtual void removePerson() = 0;
     };
