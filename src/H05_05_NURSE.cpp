@@ -26,7 +26,7 @@ namespace nurseStd {
             Nurse n;
             //creating a string stream object to read from string 'temp';
             std::stringstream s(copyDataFromFileNurse);
-            std::string doctorId, gender, age, address, appointmentsBooked;
+            std::string doctorId, gender, age, address;
             //reading from the string stream object 's';
             getline(s, doctorId, ',');
             getline(s, n.m_firstName, ',');
