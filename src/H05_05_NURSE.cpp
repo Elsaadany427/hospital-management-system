@@ -185,4 +185,41 @@ namespace nurseStd {
     void Nurse::getDetailsFromHistory() {
         // will implement soon
     }
+    void Nurse::removePerson() {
+        std::cout << "\nSearch for the nurse you want to remove.\n";
+        getDetails();
+        if (m_id == -1)
+            return;
+        hospitalStd::Hospital::m_nursesList.erase(m_id);
+
+        std::string currentS, temp;
+        std::stringstream str;
+        std::fstream f, fOut;
+        std::string reason;
+        std::cout << "\nReason?\n";
+
+        getline(std::cin >> std::ws, reason);
+        str << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age
+            << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_type << ",N,NA\n";
+        getline(str, currentS);
+
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/nursesHistory.csv", std::ios::in);
+        fOut.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
+
+        while (getline(f, temp)) {
+            if (temp == currentS) {
+                fOut << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age
+                     << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_type << ",Y," << reason << "\n";
+            } else
+                fOut << temp << "\n";
+        }
+        f.close();
+        fOut.close();
+        currentS.erase();
+        temp.erase();
+        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/nursesHistory.csv");
+        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/nursesHistory.csv");
+        std::cout << m_firstName << " " << m_lastName << " removed successfully!\n";
+    }
+
 }// namespace nurseStd
