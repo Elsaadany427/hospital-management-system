@@ -64,6 +64,10 @@ namespace doctorStd {
         return;
     }
     void Doctor::addPerson() {
+        if (hospitalStd::Hospital::m_doctorsList.size() == hospitalStd::Hospital::m_doctorsLimit) {
+            std::cout << "\n\nDoctors limit reached, can't add more!\n\n";
+            return;
+        }
         //18 and 65 are the age limits for registration of a new doctor;
         personStd::Person::addPerson(18, 65);
         if ((m_age < 18) || (m_age > 65))
@@ -77,7 +81,7 @@ namespace doctorStd {
             m_id = 1;
         hospitalStd::Hospital::m_doctorsList[m_id] = *this;
 
-        //creating a f stream object to read/write from/to files;
+        //creating an f stream object to read/write from/to files;
         std::fstream f;
         //creating a record in doctorsHistory.csv;
         f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctorsHistory.csv", std::ios::app);
@@ -90,16 +94,34 @@ namespace doctorStd {
         std::cout << "Their ID is: " << m_id << "\n";
     }
     void Doctor::printDetails() {
-        if (m_id == -1)
-            return;
         personStd::Person::printDetails();
         std::cout << "Type            : " << m_type << "\n";
         std::cout << "Appointments    : " << m_appointmentBooked << "/8 (appointments booked today)\n";
         return;
     }
-    void Doctor::printDetailsFromHistory() {}
+    void Doctor::printDetailsFromHistory() {
+        personStd::Person::printDetailsFromHistory();
+        std::cout << "Type            : " << m_type << "\n";
+        // will continue with this method soon
+    }
+    void Doctor::getDetails(int t_rec) {
+        int options = 0;
+        std::cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Name\n[3]: Filter by Type\n\n";
+        std::cin >> options;
+        while (options != 1 && options != 2 && options != 3)
+            std::cout << "option 1, 2 or 3?\n", std::cin >> options;
+
+        // Filter by ID
+        if (options == 1) {
+            int reqId = 0;
+            std::cin >> reqId;
+            if (hospitalStd::Hospital::m_doctorsList.find(reqId) != hospitalStd::Hospital::m_doctorsList.end())
+                *this = hospitalStd::Hospital::m_doctorsList[reqId];
+            else
+                std::cout << "\nNo matching record found!\n";
+        }
+    }
     void Doctor::getDetailsFromHistory() {}
-    void Doctor::getDetails(int t_rec) {}
     void Doctor::removePerson() {}
 
 }// namespace doctorStd

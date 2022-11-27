@@ -6,7 +6,7 @@
 #include "H03_03_DOCTOR.h"
 namespace hospitalStd {
     std::map<int, doctorStd::Doctor> Hospital::m_doctorsList;
-    const int m_doctorsLimit = 0;
+    const int Hospital::m_doctorsLimit = 30;
 
     //defining declared methods;
     void Hospital::printDoctors()

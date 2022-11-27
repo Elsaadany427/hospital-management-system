@@ -6,6 +6,7 @@
 #include<bits/stdc++.h>
 #include "H01_01_PERSON.h"
 #include "H03_03_DOCTOR.h"
+#include "H04_04_HOSPITAL.h"
 //using namespace std;
 
 #define pb push_back
@@ -21,7 +22,7 @@ void solve(){
     d.fillMap();
     d.addPerson();
     d.saveMap();
-    d.printDetails();
+    hospitalStd::Hospital::printDoctors();
 }
 int main(){
 

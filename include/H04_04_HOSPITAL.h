@@ -17,6 +17,7 @@ namespace hospitalStd {
 
     public:
         static void printDoctors();
+        static const int doctorsLimit;
     };
 
 }
