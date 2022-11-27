@@ -13,6 +13,7 @@ namespace nurseStd {
         std::string m_type;
 
     public:
+        Nurse();
         void fillMap() override;
         void saveMap() override;
         void addPerson() override;
