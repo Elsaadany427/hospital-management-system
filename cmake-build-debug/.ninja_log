@@ -1,22 +1,8 @@
 # ninja log v5
-5	3653	1669559502202119100	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
-3677	4517	1669559503065498700	hospital_management_system	293828487ad5d39d
-4	2446	1669463508288109900	CMakeFiles/hospital_management_system.dir/src/H02_02_ADDRESS.cpp.o	5151595c70e62aec
-3	2279	1669463508121128400	CMakeFiles/hospital_management_system.dir/src/H01_01_PERSON.cpp.o	7b4bca1317f43df1
-2	1553	1669455356692874100	CMakeFiles/hospital_management_system.dir/src/H00_00_GLOBAL.cpp.o	5d657e032c4e320e
-30	5837	1669559437255542300	CMakeFiles/hospital_management_system.dir/main.cpp.o	61d12973dc3e212e
-3	1492	1669556883392393400	CMakeFiles/hospital_management_system.dir/src/H04_04_HOSPITAL.cpp.o	4650bff8acfd98bf
-24	5679	1669570507680660100	CMakeFiles/hospital_management_system.dir/src/H00_00_GLOBAL.cpp.o	5d657e032c4e320e
-24	5693	1669570507681746600	CMakeFiles/hospital_management_system.dir/src/H01_01_PERSON.cpp.o	7b4bca1317f43df1
-25	5696	1669570507691500900	CMakeFiles/hospital_management_system.dir/src/H04_04_HOSPITAL.cpp.o	4650bff8acfd98bf
-26	5698	1669570507681119800	CMakeFiles/hospital_management_system.dir/main.cpp.o	61d12973dc3e212e
-24	5701	1669570507683529700	CMakeFiles/hospital_management_system.dir/src/H02_02_ADDRESS.cpp.o	5151595c70e62aec
-25	5703	1669570507708847300	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
-5704	6641	1669570508664245000	hospital_management_system	293828487ad5d39d
-5	2137	1669570923864633900	CMakeFiles/hospital_management_system.dir/main.cpp.o	61d12973dc3e212e
-4	2140	1669570923867572800	CMakeFiles/hospital_management_system.dir/src/H04_04_HOSPITAL.cpp.o	4650bff8acfd98bf
-3	2234	1669570923961581200	CMakeFiles/hospital_management_system.dir/src/H01_01_PERSON.cpp.o	7b4bca1317f43df1
-4	2468	1669570924194359300	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
-2468	2614	1669570924340542500	hospital_management_system	293828487ad5d39d
 5	2573	1669570954296213500	CMakeFiles/hospital_management_system.dir/src/H03_03_DOCTOR.cpp.o	1a71ac01e0bbb3fd
 2574	2718	1669570954440607000	hospital_management_system	293828487ad5d39d
+24	5701	1669570507683529700	CMakeFiles/hospital_management_system.dir/src/H02_02_ADDRESS.cpp.o	5151595c70e62aec
+3	2234	1669570923961581200	CMakeFiles/hospital_management_system.dir/src/H01_01_PERSON.cpp.o	7b4bca1317f43df1
+24	5679	1669570507680660100	CMakeFiles/hospital_management_system.dir/src/H00_00_GLOBAL.cpp.o	5d657e032c4e320e
+5	2137	1669570923864633900	CMakeFiles/hospital_management_system.dir/main.cpp.o	61d12973dc3e212e
+4	2140	1669570923867572800	CMakeFiles/hospital_management_system.dir/src/H04_04_HOSPITAL.cpp.o	4650bff8acfd98bf
