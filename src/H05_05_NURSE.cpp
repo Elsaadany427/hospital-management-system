@@ -36,7 +36,6 @@ namespace nurseStd {
             getline(s, n.m_mobNumber, ',');
             getline(s, address, ',');
             getline(s, n.m_type, ',');
-            getline(s, appointmentsBooked, ',');
             n.m_id = globalStd::strToNum(doctorId);
             n.m_gender = gender[0];
             n.m_age = {(int16_t) (globalStd::strToNum(age))};
