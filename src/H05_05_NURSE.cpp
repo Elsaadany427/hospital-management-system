@@ -93,4 +93,9 @@ namespace nurseStd {
         personStd::Person::printDetails();
         std::cout << "Type            : " << m_type << "\n";
     }
+    void Nurse::printDetailsFromHistory() {
+        personStd::Person::printDetailsFromHistory();
+        std::cout << "Type            : " << m_type << "\n";
+        // will continue with this method soon
+    }
 }// namespace nurseStd
