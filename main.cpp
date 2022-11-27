@@ -20,9 +20,9 @@ const int MOD = 1e9 + 7;
 void solve(){
     doctorStd::Doctor d;
     d.fillMap();
-    d.addPerson();
+    d.getDetails(1);
     d.saveMap();
-    hospitalStd::Hospital::printDoctors();
+    d.printDetails();
 }
 int main(){
 

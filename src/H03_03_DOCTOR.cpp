@@ -114,12 +114,53 @@ namespace doctorStd {
         // Filter by ID
         if (options == 1) {
             int reqId = 0;
+            std::cout << "Please enter the ID \n";
             std::cin >> reqId;
             if (hospitalStd::Hospital::m_doctorsList.find(reqId) != hospitalStd::Hospital::m_doctorsList.end())
                 *this = hospitalStd::Hospital::m_doctorsList[reqId];
             else
                 std::cout << "\nNo matching record found!\n";
         }
+        // Filter by name
+        else if(options == 2){
+            std::string fName, lName;
+            std::cout << "First Name:\n";
+            getline(std::cin >> std::ws, fName);
+            std::cout << "\nLast Name:\n";
+            getline(std::cin, lName);
+
+            // vector for storing matched records
+            std::vector<Doctor> matchingRecords;
+            for (const auto& i : hospitalStd::Hospital::m_doctorsList)
+            {
+                if (i.second.m_firstName == fName && i.second.m_lastName == lName)
+                    matchingRecords.push_back(i.second);
+            }
+            std::cout << "\n";
+            std::cout << matchingRecords.size() << " matching record(s) found!\n";
+            for (auto i : matchingRecords)
+                i.printDetails();
+            char selection = 'N';
+            if (matchingRecords.size() > t_rec)
+            {
+                do
+                {
+                    int reqId;
+                    std::cout << "\nEnter the ID of the required doctor: ";
+                    std::cin >> reqId;
+                    if (hospitalStd::Hospital::m_doctorsList.find(reqId) != hospitalStd::Hospital::m_doctorsList.end())
+                        *this = hospitalStd::Hospital::m_doctorsList[reqId];
+                    else
+                    {
+                        std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                        std::cin >> selection;
+                        while (selection != 'Y' || selection != 'N')
+                            std::cout << "Y or N?\n", std::cin >> selection;
+                    }
+                } while (selection == 'Y');
+            }
+        }
+        return;
     }
     void Doctor::getDetailsFromHistory() {}
     void Doctor::removePerson() {}
