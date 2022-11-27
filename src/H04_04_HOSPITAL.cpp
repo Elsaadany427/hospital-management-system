@@ -13,6 +13,5 @@ namespace hospitalStd {
     {
         for (auto i : m_doctorsList)
             i.second.printDetails(), std::cout << "\n";
-        return;
     }
 }

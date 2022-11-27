@@ -15,14 +15,15 @@ namespace doctorStd {
 
     public:
         Doctor();
-        void fillMap();
-        void saveMap();
-        void addPerson();
-        void printDetails();
-        void printDetailsFromHistory();
-        void getDetails(int t_rec = 0);
-        void getDetailsFromHistory();
-        void removePerson();
+        void fillMap() override;
+        void saveMap() override;
+        void addPerson() override;
+        void printDetails() override;
+        void printDetailsFromHistory() override;
+        void getDetails(int t_rec) override;
+        void getDetails() override {getDetails(0);};
+        void getDetailsFromHistory() override;
+        void removePerson() override;
     };
 }// namespace doctorStd
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H03_03_DOCTOR_H

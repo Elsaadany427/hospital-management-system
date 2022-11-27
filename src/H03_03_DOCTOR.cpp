@@ -38,13 +38,12 @@ namespace doctorStd {
             getline(s, appointmentsBooked, ',');
             d.m_id = globalStd::strToNum(doctorId);
             d.m_gender = gender[0];
-            d.m_age = globalStd::strToNum(age);
+            d.m_age = {(int16_t) (globalStd::strToNum(age))};
             d.m_address.decryptAddress(address);
             d.m_appointmentBooked = globalStd::strToNum(appointmentsBooked);
             hospitalStd::Hospital::m_doctorsList[d.m_id] = d;
         }
         f.close();
-        return;
     }
     void Doctor::saveMap() {
         std::fstream f;
@@ -60,8 +59,6 @@ namespace doctorStd {
 
         remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv");
         rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv");
-
-        return;
     }
     void Doctor::addPerson() {
         if (hospitalStd::Hospital::m_doctorsList.size() == hospitalStd::Hospital::m_doctorsLimit) {
@@ -97,7 +94,6 @@ namespace doctorStd {
         personStd::Person::printDetails();
         std::cout << "Type            : " << m_type << "\n";
         std::cout << "Appointments    : " << m_appointmentBooked << "/8 (appointments booked today)\n";
-        return;
     }
     void Doctor::printDetailsFromHistory() {
         personStd::Person::printDetailsFromHistory();
@@ -187,10 +183,9 @@ namespace doctorStd {
                 } while (selection == 'Y');
             }
         }
-        return;
     }
     void Doctor::getDetailsFromHistory() {
-        // will implemented soon
+        // will implement soon
     }
     void Doctor::removePerson() {
         std::cout << "\nSearch for the doctor you want to remove.\n";
@@ -205,7 +200,7 @@ namespace doctorStd {
 
         std::string currentS, temp;
         std::stringstream str;
-        std::fstream f, fout;
+        std::fstream f, fOut;
         std::string reason;
         std::cout << "\nReason?\n";
 
@@ -215,20 +210,20 @@ namespace doctorStd {
         getline(str, currentS);
 
         f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctorsHistory.csv", std::ios::in);
-        fout.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
+        fOut.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
 
         while (getline(f, temp))
         {
             if (temp == currentS)
             {
-                fout << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age
+                fOut << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age
                      << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_type << ",Y," << reason << "\n";
             }
             else
-                fout << temp << "\n";
+                fOut << temp << "\n";
         }
         f.close();
-        fout.close();
+        fOut.close();
         currentS.erase();
         temp.erase();
         remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctorsHistory.csv");
