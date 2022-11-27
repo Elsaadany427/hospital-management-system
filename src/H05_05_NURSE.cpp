@@ -137,7 +137,7 @@ namespace nurseStd {
             if (matchingRecords.size() > t_rec) {
                 do {
                     int reqId;
-                    std::cout << "\nEnter the ID of the required doctor: ";
+                    std::cout << "\nEnter the ID of the required nurse: ";
                     std::cin >> reqId;
                     if (hospitalStd::Hospital::m_nursesList.find(reqId) != hospitalStd::Hospital::m_nursesList.end())
                         *this = hospitalStd::Hospital::m_nursesList[reqId];
@@ -168,7 +168,7 @@ namespace nurseStd {
             if (matchingRecords.size() > t_rec) {
                 do {
                     int reqId;
-                    std::cout << "\nEnter the ID of the required doctor: ";
+                    std::cout << "\nEnter the ID of the required nurse: ";
                     std::cin >> reqId;
                     if (hospitalStd::Hospital::m_nursesList.find(reqId) != hospitalStd::Hospital::m_nursesList.end())
                         *this = hospitalStd::Hospital::m_nursesList[reqId];
