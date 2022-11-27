@@ -19,7 +19,7 @@ namespace addressStd {
         Address();
         void takeAddress();
         void printAddress();
-        std::string encryptAddress();
+        std::string encryptAddress() const;
         void decryptAddress(std::string t_encryptedAddress);
     };
 }// namespace addressStd

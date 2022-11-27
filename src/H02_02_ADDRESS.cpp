@@ -47,7 +47,7 @@ namespace addressStd {
         return;
     }
     // Encrypt Address
-    std::string Address::encryptAddress() {
+    std::string Address::encryptAddress() const {
         std::stringstream sObj;
         sObj << m_line1 << "/" << m_line2 << "/" << m_city << "/" << m_state << "/" << m_pinCode << "/" << m_country;
         std::string encryptedAddress;

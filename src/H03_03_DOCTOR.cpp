@@ -4,6 +4,7 @@
 
 #include "H03_03_DOCTOR.h"
 #include "H00_00_GLOBAL.h"
+#include "H04_04_HOSPITAL.h"
 
 namespace doctorStd {
     Doctor::Doctor() {
@@ -15,13 +16,12 @@ namespace doctorStd {
     }
     void Doctor::fillMap() {
         std::fstream f;
-        f.open("./data/doctors.csv", std::ios::in);
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv", std::ios::in);
         std::string copyDataFromFileDoctor;
         //skipping the first row containing column headers;
         getline(f >> std::ws, copyDataFromFileDoctor);
         //analyzing each entry afterwards;
-        while (getline(f >> std::ws, copyDataFromFileDoctor))
-        {
+        while (getline(f >> std::ws, copyDataFromFileDoctor)) {
             Doctor d;
             //creating a string stream object to read from string 'temp';
             std::stringstream s(copyDataFromFileDoctor);
@@ -41,22 +41,26 @@ namespace doctorStd {
             d.m_age = globalStd::strToNum(age);
             d.m_address.decryptAddress(address);
             d.m_appointmentBooked = globalStd::strToNum(appointmentsBooked);
+            hospitalStd::Hospital::m_doctorsList[d.m_id] = d;
         }
         f.close();
         return;
     }
     void Doctor::saveMap() {
         std::fstream f;
-        f.open("./data/temp.csv", std::ios::out);
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
         // `le first line containing column headers:
         f << "doctorId,firstName,lastName,gender,age,mobNumber,address,type,appointmentsBooked\n";
-//        for (auto i : hospital::doctorsList)
-//            f << i.second.id << "," << i.second.firstName << "," << i.second.lastName << "," << i.second.gender
-//              << "," << i.second.age << "," << i.second.mobNumber << "," << i.second.add.addToStr()
-//              << "," << i.second.type << "," << i.second.appointmentsBooked << endl;
+
+        for (const auto &i: hospitalStd::Hospital::m_doctorsList)
+            f << i.second.m_id << "," << i.second.m_firstName << "," << i.second.m_lastName << "," << i.second.m_gender
+              << "," << i.second.m_age << "," << i.second.m_mobNumber << "," << i.second.m_address.encryptAddress()
+              << "," << i.second.m_type << "," << i.second.m_appointmentBooked << "\n";
         f.close();
-        remove("./data/doctors.csv");
-        rename("./data/temp.csv", "./data/doctors.csv");
+
+        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv");
+        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv");
+
         return;
     }
     void Doctor::addPerson() {
@@ -66,17 +70,36 @@ namespace doctorStd {
             return;
         std::cout << "\nEnter the type of the doctor: \n";
         getline(std::cin >> std::ws, m_type);
-        // checking the hospital list
-        // code soon
-        //creating a fstream object to read/write from/to files;
+        // debug
+        if (hospitalStd::Hospital::m_doctorsList.rbegin() != hospitalStd::Hospital::m_doctorsList.rend())
+            m_id = ((hospitalStd::Hospital::m_doctorsList.rbegin())->first) + 1;
+        else
+            m_id = 1;
+        hospitalStd::Hospital::m_doctorsList[m_id] = *this;
+
+        //creating a f stream object to read/write from/to files;
         std::fstream f;
         //creating a record in doctorsHistory.csv;
-        f.open("./data/doctorsHistory.csv", std::ios::app);
-        f << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_type << ",N,NA" << "\n";
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctorsHistory.csv", std::ios::app);
+        f << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_type << ",N,NA"
+          << "\n";
         f.close();
 
         std::cout << "\n"
-             << m_firstName << " " << m_lastName << " registered successfully!\n";
+                  << m_firstName << " " << m_lastName << " registered successfully!\n";
         std::cout << "Their ID is: " << m_id << "\n";
     }
-}
+    void Doctor::printDetails() {
+        if (m_id == -1)
+            return;
+        personStd::Person::printDetails();
+        std::cout << "Type            : " << m_type << "\n";
+        std::cout << "Appointments    : " << m_appointmentBooked << "/8 (appointments booked today)\n";
+        return;
+    }
+    void Doctor::printDetailsFromHistory() {}
+    void Doctor::getDetailsFromHistory() {}
+    void Doctor::getDetails(int t_rec) {}
+    void Doctor::removePerson() {}
+
+}// namespace doctorStd

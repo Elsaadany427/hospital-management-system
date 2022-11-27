@@ -5,10 +5,9 @@
 
 #include<bits/stdc++.h>
 #include "H01_01_PERSON.h"
+#include "H03_03_DOCTOR.h"
+//using namespace std;
 
-using namespace std;
-
-#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL)
 #define pb push_back
 
 typedef long long ll;
@@ -18,11 +17,14 @@ const int MOD = 1e9 + 7;
 
 
 void solve(){
-
+    doctorStd::Doctor d;
+    d.fillMap();
+    d.addPerson();
+    d.saveMap();
+    d.printDetails();
 }
 int main(){
 
-    fast_io ;
     solve();
 
 }
