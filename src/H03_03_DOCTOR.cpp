@@ -160,6 +160,41 @@ namespace doctorStd {
                 } while (selection == 'Y');
             }
         }
+        // Filter by type
+        else if(options == 3){
+            std::string reqType;
+            std::cout << "Enter the type of doctor required:\n";
+            getline(std::cin >> std::ws, reqType);
+            std::vector<Doctor> matchingRecords;
+            for (const auto& i : hospitalStd::Hospital::m_doctorsList)
+            {
+                if (i.second.m_type == reqType)
+                    matchingRecords.push_back(i.second);
+            }
+            std::cout << "\n";
+            std::cout << matchingRecords.size() << " matching record(s) found!\n";
+            for (auto i : matchingRecords)
+                i.printDetails();
+            char selection = 'N';
+            if (matchingRecords.size() > t_rec)
+            {
+                do
+                {
+                    int reqId;
+                    std::cout << "\nEnter the ID of the required doctor: ";
+                    std::cin >> reqId;
+                    if (hospitalStd::Hospital::m_doctorsList.find(reqId) != hospitalStd::Hospital::m_doctorsList.end())
+                        *this = hospitalStd::Hospital::m_doctorsList[reqId];
+                    else
+                    {
+                        std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                        std::cin >> selection;
+                        while (selection != 'Y' || selection != 'N')
+                            std::cout << "Y or N?\n", std::cin >> selection;
+                    }
+                } while (selection == 'Y');
+            }
+        }
         return;
     }
     void Doctor::getDetailsFromHistory() {}
