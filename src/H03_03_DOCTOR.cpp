@@ -122,7 +122,7 @@ namespace doctorStd {
                 std::cout << "\nNo matching record found!\n";
         }
         // Filter by name
-        else if(options == 2){
+        else if (options == 2) {
             std::string fName, lName;
             std::cout << "First Name:\n";
             getline(std::cin >> std::ws, fName);
@@ -131,27 +131,23 @@ namespace doctorStd {
 
             // vector for storing matched records
             std::vector<Doctor> matchingRecords;
-            for (const auto& i : hospitalStd::Hospital::m_doctorsList)
-            {
+            for (const auto &i: hospitalStd::Hospital::m_doctorsList) {
                 if (i.second.m_firstName == fName && i.second.m_lastName == lName)
                     matchingRecords.push_back(i.second);
             }
             std::cout << "\n";
             std::cout << matchingRecords.size() << " matching record(s) found!\n";
-            for (auto i : matchingRecords)
+            for (auto i: matchingRecords)
                 i.printDetails();
             char selection = 'N';
-            if (matchingRecords.size() > t_rec)
-            {
-                do
-                {
+            if (matchingRecords.size() > t_rec) {
+                do {
                     int reqId;
                     std::cout << "\nEnter the ID of the required doctor: ";
                     std::cin >> reqId;
                     if (hospitalStd::Hospital::m_doctorsList.find(reqId) != hospitalStd::Hospital::m_doctorsList.end())
                         *this = hospitalStd::Hospital::m_doctorsList[reqId];
-                    else
-                    {
+                    else {
                         std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
                         std::cin >> selection;
                         while (selection != 'Y' || selection != 'N')
@@ -161,32 +157,28 @@ namespace doctorStd {
             }
         }
         // Filter by type
-        else if(options == 3){
+        else if (options == 3) {
             std::string reqType;
             std::cout << "Enter the type of doctor required:\n";
             getline(std::cin >> std::ws, reqType);
             std::vector<Doctor> matchingRecords;
-            for (const auto& i : hospitalStd::Hospital::m_doctorsList)
-            {
+            for (const auto &i: hospitalStd::Hospital::m_doctorsList) {
                 if (i.second.m_type == reqType)
                     matchingRecords.push_back(i.second);
             }
             std::cout << "\n";
             std::cout << matchingRecords.size() << " matching record(s) found!\n";
-            for (auto i : matchingRecords)
+            for (auto i: matchingRecords)
                 i.printDetails();
             char selection = 'N';
-            if (matchingRecords.size() > t_rec)
-            {
-                do
-                {
+            if (matchingRecords.size() > t_rec) {
+                do {
                     int reqId;
                     std::cout << "\nEnter the ID of the required doctor: ";
                     std::cin >> reqId;
                     if (hospitalStd::Hospital::m_doctorsList.find(reqId) != hospitalStd::Hospital::m_doctorsList.end())
                         *this = hospitalStd::Hospital::m_doctorsList[reqId];
-                    else
-                    {
+                    else {
                         std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
                         std::cin >> selection;
                         while (selection != 'Y' || selection != 'N')
@@ -197,7 +189,51 @@ namespace doctorStd {
         }
         return;
     }
-    void Doctor::getDetailsFromHistory() {}
-    void Doctor::removePerson() {}
+    void Doctor::getDetailsFromHistory() {
+        // will implemented soon
+    }
+    void Doctor::removePerson() {
+        std::cout << "\nSearch for the doctor you want to remove.\n";
+        getDetails();
+        if(m_id == -1)
+            return;
+        if(m_appointmentBooked > 0){
+            std::cout << "\nSelected doctor has appointments booked for today, can't be removed.\n\n";
+            return;
+        }
+        hospitalStd::Hospital::m_doctorsList.erase(m_id);
+
+        std::string currentS, temp;
+        std::stringstream str;
+        std::fstream f, fout;
+        std::string reason;
+        std::cout << "\nReason?\n";
+
+        getline(std::cin >> std::ws, reason);
+        str << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age
+            << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_type << ",N,NA\n";
+        getline(str, currentS);
+
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctorsHistory.csv", std::ios::in);
+        fout.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
+
+        while (getline(f, temp))
+        {
+            if (temp == currentS)
+            {
+                fout << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age
+                     << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_type << ",Y," << reason << "\n";
+            }
+            else
+                fout << temp << "\n";
+        }
+        f.close();
+        fout.close();
+        currentS.erase();
+        temp.erase();
+        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctorsHistory.csv");
+        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctorsHistory.csv");
+        std::cout << m_firstName << " " << m_lastName << " removed successfully!\n";
+    }
 
 }// namespace doctorStd

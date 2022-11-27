@@ -57,7 +57,7 @@ namespace addressStd {
                 i = '~';
         return encryptedAddress;
     }
-    void Address::decryptAddress(std::string t_encryptedAddress) {
+    void Address::decryptAddress(const std::string& t_encryptedAddress) {
         std::stringstream s(t_encryptedAddress);
 
         getline(s, m_line1, '/');
