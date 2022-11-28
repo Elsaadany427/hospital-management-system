@@ -41,6 +41,7 @@ namespace driverStd {
             d.m_age = {(int16_t) (globalStd::strToNum(age))};
             d.m_address.decryptAddress(address);
             d.m_idle = (idle == "Y");
+            hospitalStd::Hospital::m_driversList[d.m_id] = d;
         }
         f.close();
     }
