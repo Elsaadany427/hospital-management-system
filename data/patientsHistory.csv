@@ -1,1 +1,3 @@
 firstName,lastName,gender,age,mobileNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?,discharged(ifHospitalized)?
+HATEM,CC,M,20,002111,DDD/DD/DD/DD/DD/DD,20,20,N,Y,N
+hatem,bassem,M,22,0221,fff/ss/ff/dd/ff/dd,20,200,N,Y,N

@@ -175,6 +175,51 @@ namespace patientStd {
     void Patient::getDetailsFromHistory() {
         // will implement soon
     }
+    void Patient::hospitalize() {
+        std::cout << "\nSearch for the patient.\n";
+        getDetails();
+        if (m_id == -1)
+            return;
+        // it will be saved in csv when saveMap called
+        hospitalStd::Hospital::m_patientsList[m_id].m_hospitalized = true;
+
+        std::string currentS, temp, corrected;
+        std::stringstream copyS;
+        std::fstream f, fout;
+        copyS << m_firstName << "," << m_lastName
+            << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress()
+            << "," << m_height << "," << m_weight << "," << ((m_hospitalized) ? "Y" : "N")
+            << ","
+            << ((m_alive) ? "Y" : "N")
+            << ",N"
+            << "\n";
+        getline(copyS >> std::ws, currentS);
+
+        copyS << m_firstName << "," << m_lastName
+            << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress()
+            << "," << m_height << "," << m_weight << ","
+            << "Y,"
+            << ((m_alive) ? "Y,N\n" : "N,N\n");
+        getline(copyS >> std::ws, corrected);
+        // search in patientsHistory to change row
+        f.open("./data/patientsHistory.csv", std::ios::in);
+        fout.open("./data/temp.csv", std::ios::out);
+        while (getline(f, temp))
+        {
+            if (temp == currentS)
+                fout << corrected << "\n";
+            else
+                fout << temp << "\n";
+        }
+        f.close();
+        fout.close();
+        currentS.erase();
+        temp.erase();
+        remove("./data/patientsHistory.csv");
+        rename("./data/temp.csv", "./data/patientsHistory.csv");
+        std::cout << m_firstName << " " << m_lastName << " hospitalized successfully!\n";
+
+    }
     void Patient::removePerson() {
         std::cout << "\nSearch for the patient you want to remove.\n";
         getDetails();
