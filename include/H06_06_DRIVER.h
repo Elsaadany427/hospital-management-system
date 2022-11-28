@@ -10,8 +10,8 @@
 namespace driverStd {
     class Driver : public personStd::Person {
     private:
-        std::string licenceNumber;
-        bool idle;
+        std::string m_licenceNumber;
+        bool m_idle;
 
     public:
         Driver();
