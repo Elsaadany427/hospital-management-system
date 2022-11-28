@@ -93,11 +93,22 @@ namespace patientStd {
         //creating a record in doctorsHistory.csv;
         f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patientsHistory.csv", std::ios::app);
         f << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_height << ","
-          << m_weight << "," << ((m_hospitalized) ? "Y" : "N") << "," << "Y" << "," << "N" << "\n";
+          << m_weight << "," << ((m_hospitalized) ? "Y" : "N") << ","
+          << "Y"
+          << ","
+          << "N"
+          << "\n";
         f.close();
 
         std::cout << "\n"
                   << m_firstName << " " << m_lastName << " registered successfully!\n";
         std::cout << "Their ID is: " << m_id << "\n";
+    }
+    void Patient::printDetails() {
+        personStd::Person::printDetails();
+        std::cout << "Height (cms)    : " << m_height << "\n";
+        std::cout << "Weight (pounds) : " << m_weight << "\n";
+        std::cout << "Was Hospitalized? " << ((m_hospitalized) ? "Y" : "N") << "\n";
+        std::cout << "Alive?          : " << ((m_alive) ? "Y" : "N") << "\n";
     }
 }// namespace patientStd
