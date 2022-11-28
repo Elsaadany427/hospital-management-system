@@ -172,4 +172,7 @@ namespace patientStd {
             }
         }
     }
+    void Patient::getDetailsFromHistory() {
+        // will implement soon
+    }
 }// namespace patientStd
