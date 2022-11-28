@@ -91,4 +91,16 @@ namespace driverStd {
                   << m_firstName << " " << m_lastName << " registered successfully!\n";
         std::cout << "Their ID is: " << m_id << "\n";
     }
+
+    void Driver::printDetails() {
+        personStd::Person::printDetails();
+        std::cout << "License Number  : " << m_licenceNumber << "\n";
+        std::cout << "Idle?           : " << (m_idle ? "Y\n" : "N\n");
+    }
+    void Driver::printDetailsFromHistory() {
+        personStd::Person::printDetailsFromHistory();
+        std::cout << "License Number  : " << m_licenceNumber << "\n";
+        std::cout << "Idle?           : " << (m_idle ? "Y\n" : "N\n");
+        // will continue with this method soon
+    }
 }
