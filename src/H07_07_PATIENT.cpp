@@ -220,6 +220,48 @@ namespace patientStd {
         std::cout << m_firstName << " " << m_lastName << " hospitalized successfully!\n";
 
     }
+    void Patient::reportADeath() {
+        std::cout << "\nSearch for the patient.\n";
+        getDetails();
+        if (m_id == -1)
+            return;
+        // it will be saved in csv when saveMap called
+        hospitalStd::Hospital::m_patientsList[m_id].m_alive = false;
+
+        std::string currentS, temp, corrected;
+        std::stringstream copyS;
+        std::fstream f, fout;
+        copyS << m_firstName << "," << m_lastName
+              << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress()
+              << "," << m_height << "," << m_weight << "," << ((m_hospitalized) ? "Y" : "N")
+              << ","
+              << ((m_alive) ? "Y" : "N")
+              << ",N"
+              << "\n";
+        getline(copyS >> std::ws, currentS);
+
+        copyS << m_firstName << "," << m_lastName
+              << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress()
+              << "," << m_height << "," << m_weight << "," << ((m_hospitalized) ? "Y,N,N\n" : "N,N,N\n");
+        getline(copyS >> std::ws, corrected);
+        // search in patientsHistory to change row
+        f.open("./data/patientsHistory.csv", std::ios::in);
+        fout.open("./data/temp.csv", std::ios::out);
+        while (getline(f, temp))
+        {
+            if (temp == currentS)
+                fout << corrected << "\n";
+            else
+                fout << temp << "\n";
+        }
+        f.close();
+        fout.close();
+        currentS.erase();
+        temp.erase();
+        remove("./data/patientsHistory.csv");
+        rename("./data/temp.csv", "./data/patientsHistory.csv");
+        std::cout << m_firstName << " " << m_lastName << " hospitalized successfully!\n";
+    }
     void Patient::removePerson() {
         std::cout << "\nSearch for the patient you want to remove.\n";
         getDetails();
@@ -234,12 +276,9 @@ namespace patientStd {
         std::string currentS, temp;
         std::stringstream str;
         std::fstream f, fOut;
-        std::string reason;
-        std::cout << "\nReason?\n";
 
-        getline(std::cin >> std::ws, reason);
         str << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age
-            << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_height << "," << m_weight << "," << ((m_hospitalized) ? "Y" : "N")
+            << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_height << "," << m_weight << "," <<  "Y"
             << ","
             << ((m_alive) ? "Y" : "N")
             << ",N"
@@ -252,10 +291,10 @@ namespace patientStd {
         while (getline(f, temp)) {
             if (temp == currentS) {
                 fOut << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age
-                     << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_height << "," << m_weight << "," << ((m_hospitalized) ? "Y" : "N")
+                     << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_height << "," << m_weight << "," << "Y"
                      << ","
                      << ((m_alive) ? "Y" : "N")
-                     << ",N"
+                     << ",Y"
                      << "\n";
             } else
                 fOut << temp << "\n";
@@ -264,8 +303,8 @@ namespace patientStd {
         fOut.close();
         currentS.erase();
         temp.erase();
-        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/nursesHistory.csv");
-        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/nursesHistory.csv");
+        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patientsHistory.csv");
+        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patientsHistory.csv");
         std::cout << m_firstName << " " << m_lastName << " removed successfully!\n";
     }
 }// namespace patientStd
