@@ -21,14 +21,20 @@ namespace personStd {
         std::cout << "\nLast name:\n";
         getline(std::cin, m_lastName);
 
-        // getting Age
-        std::cout << "\nEnter age: \n";
-        std::cin >> m_age;
+        // getting Age and check it
+        do {
+            std::cout << "\nEnter age \n";
+            while (!(std::cin >> m_age)) {
+                std::cout << "Was that supposed to make any kind of sense?\nEnter again!\n";
+                std::cin.clear();
+                std::cin.ignore(10000, '\n');
+            }
+            if (m_age <= 0) {
+                std::cout << "Age must be positive value!";
+            }
 
-        // checking the age
-        while (m_age <= 0) {
-            std::cout << "Was that supposed to make any kind of sense?\nEnter again!\n", std::cin >> m_age;
-        }
+        } while (m_age <= 0);
+
         // checking the ages of all staff except patient(category 2)
         if (m_category != 2) {
             if (m_age < t_minAge)
