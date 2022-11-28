@@ -52,4 +52,20 @@ namespace patientStd{
         }
         f.close();
     }
+    void Patient::saveMap() {
+        std::fstream f;
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
+        // `le first line containing column headers:
+        f << "patientId,firstName,lastName,gender,age,mobNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?\n";
+
+        for (const auto &i: hospitalStd::Hospital::m_patientsList)
+            f << i.second.m_id << "," << i.second.m_firstName << "," << i.second.m_lastName << "," << i.second.m_gender
+              << "," << i.second.m_age << "," << i.second.m_mobNumber << "," << i.second.m_address.encryptAddress()
+              << "," << i.second.m_height << "," << i.second.m_weight << ","
+              << (i.second.m_hospitalized ? 'Y' : 'N') << "," << (i.second.m_alive ? 'Y' : 'N') << "\n";
+        f.close();
+
+        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patients.csv");
+        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patients.csv");
+    }
 }
