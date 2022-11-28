@@ -21,7 +21,6 @@ void solve(){
     doctorStd::Doctor d;
     d.fillMap();
     d.addPerson();
-    
 }
 int main(){
 
