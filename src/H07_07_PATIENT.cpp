@@ -119,4 +119,57 @@ namespace patientStd {
         std::cout << "Alive?          : " << ((m_alive) ? "Y" : "N") << "\n";
         // will continue with this method soon
     }
+    void Patient::getDetails(int t_rec) {
+        int options = 0;
+        std::cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Name\n\n";
+        std::cin >> options;
+        while (options != 1 && options != 2)
+            std::cout << "option 1 or 2?\n", std::cin >> options;
+
+        // Filter by ID
+        if (options == 1) {
+            int reqId = 0;
+            std::cout << "Please enter the ID \n";
+            std::cin >> reqId;
+            if (hospitalStd::Hospital::m_patientsList.find(reqId) != hospitalStd::Hospital::m_patientsList.end())
+                *this = hospitalStd::Hospital::m_patientsList[reqId];
+            else
+                std::cout << "\nNo matching record found!\n";
+        }
+        // Filter by name
+        else if (options == 2) {
+            std::string fName, lName;
+            std::cout << "First Name:\n";
+            getline(std::cin >> std::ws, fName);
+            std::cout << "\nLast Name:\n";
+            getline(std::cin, lName);
+
+            // vector for storing matched records
+            std::vector<Patient> matchingRecords;
+            for (const auto &i: hospitalStd::Hospital::m_patientsList) {
+                if (i.second.m_firstName == fName && i.second.m_lastName == lName)
+                    matchingRecords.push_back(i.second);
+            }
+            std::cout << "\n";
+            std::cout << matchingRecords.size() << " matching record(s) found!\n";
+            for (auto i: matchingRecords)
+                i.printDetails();
+            char selection = 'N';
+            if (matchingRecords.size() > t_rec) {
+                do {
+                    int reqId;
+                    std::cout << "\nEnter the ID of the required patient: ";
+                    std::cin >> reqId;
+                    if (hospitalStd::Hospital::m_patientsList.find(reqId) != hospitalStd::Hospital::m_patientsList.end())
+                        *this = hospitalStd::Hospital::m_patientsList[reqId];
+                    else {
+                        std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                        std::cin >> selection;
+                        while (selection != 'Y' || selection != 'N')
+                            std::cout << "Y or N?\n", std::cin >> selection;
+                    }
+                } while (selection == 'Y');
+            }
+        }
+    }
 }// namespace patientStd
