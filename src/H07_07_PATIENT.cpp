@@ -4,6 +4,7 @@
 
 #include "H07_07_PATIENT.h"
 #include "H00_00_GLOBAL.h"
+#include "H04_04_HOSPITAL.h"
 
 namespace patientStd{
     Patient::Patient() {
@@ -47,6 +48,7 @@ namespace patientStd{
             p.m_weight = globalStd::strToNum(weight);
             p.m_hospitalized = (hospitalized == "Y");
             p.m_alive = (alive == "Y");
+            hospitalStd::Hospital::m_patientsList[p.m_id] = p;
         }
         f.close();
     }
