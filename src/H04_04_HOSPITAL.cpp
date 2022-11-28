@@ -9,11 +9,13 @@ namespace hospitalStd {
     std::map<int, doctorStd::Doctor> Hospital::m_doctorsList;
     std::map<int, nurseStd::Nurse> Hospital::m_nursesList;
     std::map<int,driverStd::Driver> Hospital::m_driversList;
+    std::map<int,patientStd::Patient> Hospital::m_patientsList;
 
     // Limits
     const int Hospital::m_doctorsLimit = 30;
     const int Hospital::m_nursesLimit = 50;
     const int Hospital::m_driversLimit = 50;
+    const int Hospital::m_patientsLimit = 50;
 
     //defining declared methods;
     void Hospital::printDoctors()
@@ -31,6 +33,12 @@ namespace hospitalStd {
     void Hospital::printDrivers()
     {
         for (auto i : m_driversList)
+            i.second.printDetails(), std::cout << "\n";
+    }
+
+    void Hospital::printPatients()
+    {
+        for (auto i : m_patientsList)
             i.second.printDetails(), std::cout << "\n";
     }
 }
