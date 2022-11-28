@@ -45,4 +45,50 @@ namespace driverStd {
         }
         f.close();
     }
+    void Driver::saveMap() {
+        std::fstream f;
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
+        // `le first line containing column headers:
+        f << "driverId,firstName,lastName,gender,age,mobNumber,address,licenceNumber,idle?\n";
+
+        for (const auto &i: hospitalStd::Hospital::m_driversList)
+            f << i.second.m_id << "," << i.second.m_firstName << "," << i.second.m_lastName << "," << i.second.m_gender
+              << "," << i.second.m_age << "," << i.second.m_mobNumber << "," << i.second.m_address.encryptAddress()
+              << "," << i.second.m_licenceNumber << "," << (i.second.m_idle ? 'Y' : 'N') << "\n";
+        f.close();
+
+        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/drivers.csv");
+        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/drivers.csv");
+    }
+
+    void Driver::addPerson() {
+        if (hospitalStd::Hospital::m_driversList.size() == hospitalStd::Hospital::m_driversLimit) {
+            std::cout << "\n\nDriver limit reached, can't add more!\n\n";
+            return;
+        }
+        //18 and 65 are the age limits for registration of a new doctor;
+        personStd::Person::addPerson(18, 65);
+        if ((m_age < 18) || (m_age > 65))
+            return;
+        std::cout << "\nEnter the license number of the driver: \n";
+        getline(std::cin >> std::ws, m_licenceNumber);
+        // debug
+        if (hospitalStd::Hospital::m_driversList.rbegin() != hospitalStd::Hospital::m_driversList.rend())
+            m_id = ((hospitalStd::Hospital::m_driversList.rbegin())->first) + 1;
+        else
+            m_id = 1;
+        hospitalStd::Hospital::m_driversList[m_id] = *this;
+
+        //creating an f stream object to read/write from/to files;
+        std::fstream f;
+        //creating a record in doctorsHistory.csv;
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/driversHistory.csv", std::ios::app);
+        f << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_licenceNumber << ",N,NA"
+          << "\n";
+        f.close();
+
+        std::cout << "\n"
+                  << m_firstName << " " << m_lastName << " registered successfully!\n";
+        std::cout << "Their ID is: " << m_id << "\n";
+    }
 }
