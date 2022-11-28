@@ -13,7 +13,7 @@ namespace patientStd{
         int m_height;
         int m_weight;
         bool m_hospitalized;
-        bool alive;
+        bool m_alive;
 
     public:
         Patient();
