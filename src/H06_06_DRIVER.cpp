@@ -103,4 +103,88 @@ namespace driverStd {
         std::cout << "Idle?           : " << (m_idle ? "Y\n" : "N\n");
         // will continue with this method soon
     }
+    void Driver::getDetails(int t_rec) {
+        int options = 0;
+        std::cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Name\n[3]: Filter by License Number\n\n";
+        std::cin >> options;
+        while (options != 1 && options != 2 && options != 3)
+            std::cout << "option 1, 2 or 3?\n", std::cin >> options;
+
+        // Filter by ID
+        if (options == 1) {
+            int reqId = 0;
+            std::cout << "Please enter the ID \n";
+            std::cin >> reqId;
+            if (hospitalStd::Hospital::m_driversList.find(reqId) != hospitalStd::Hospital::m_driversList.end())
+                *this = hospitalStd::Hospital::m_driversList[reqId];
+            else
+                std::cout << "\nNo matching record found!\n";
+        }
+        // Filter by name
+        else if (options == 2) {
+            std::string fName, lName;
+            std::cout << "First Name:\n";
+            getline(std::cin >> std::ws, fName);
+            std::cout << "\nLast Name:\n";
+            getline(std::cin, lName);
+
+            // vector for storing matched records
+            std::vector<Driver> matchingRecords;
+            for (const auto &i: hospitalStd::Hospital::m_driversList) {
+                if (i.second.m_firstName == fName && i.second.m_lastName == lName)
+                    matchingRecords.push_back(i.second);
+            }
+            std::cout << "\n";
+            std::cout << matchingRecords.size() << " matching record(s) found!\n";
+            for (auto i: matchingRecords)
+                i.printDetails();
+            char selection = 'N';
+            if (matchingRecords.size() > t_rec) {
+                do {
+                    int reqId;
+                    std::cout << "\nEnter the ID of the required driver: ";
+                    std::cin >> reqId;
+                    if (hospitalStd::Hospital::m_driversList.find(reqId) != hospitalStd::Hospital::m_driversList.end())
+                        *this = hospitalStd::Hospital::m_driversList[reqId];
+                    else {
+                        std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                        std::cin >> selection;
+                        while (selection != 'Y' || selection != 'N')
+                            std::cout << "Y or N?\n", std::cin >> selection;
+                    }
+                } while (selection == 'Y');
+            }
+        }
+        // Filter by type
+        else if (options == 3) {
+            std::string reqLicenceNum;
+            std::cout << "Enter the License Number of driver required:\n";
+            getline(std::cin >> std::ws, reqLicenceNum);
+            std::vector<Driver> matchingRecords;
+            for (const auto &i: hospitalStd::Hospital::m_driversList) {
+                if (i.second.m_licenceNumber == reqLicenceNum)
+                    matchingRecords.push_back(i.second);
+            }
+            std::cout << "\n";
+            std::cout << matchingRecords.size() << " matching record(s) found!\n";
+            for (auto i: matchingRecords)
+                i.printDetails();
+            char selection = 'N';
+            if (matchingRecords.size() > t_rec) {
+                do {
+                    int reqId;
+                    std::cout << "\nEnter the ID of the required driver: ";
+                    std::cin >> reqId;
+                    if (hospitalStd::Hospital::m_driversList.find(reqId) != hospitalStd::Hospital::m_driversList.end())
+                        *this = hospitalStd::Hospital::m_driversList[reqId];
+                    else {
+                        std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                        std::cin >> selection;
+                        while (selection != 'Y' || selection != 'N')
+                            std::cout << "Y or N?\n", std::cin >> selection;
+                    }
+                } while (selection == 'Y');
+            }
+        }
+    }
 }
