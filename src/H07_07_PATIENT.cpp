@@ -6,7 +6,7 @@
 #include "H00_00_GLOBAL.h"
 #include "H04_04_HOSPITAL.h"
 
-namespace patientStd{
+namespace patientStd {
     Patient::Patient() {
         m_id = -1;
         m_category = 2;
@@ -68,4 +68,36 @@ namespace patientStd{
         remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patients.csv");
         rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patients.csv");
     }
-}
+    void Patient::addPerson() {
+        //18 and 65 are the age limits for registration of a new doctor;
+        personStd::Person::addPerson();
+        std::cout << "\nEnter the height of the patient (in cms):\n";
+        std::cin >> m_height;
+        std::cout << "\nEnter the weight of the patient (in pounds):\n";
+        std::cin >> m_weight;
+        char selection;
+        std::cout << "\nIs the patient being hospitalized? (Y = Yes || N = No)\n";
+        std::cin >> selection;
+        while (selection != 'Y' && selection != 'N')
+            std::cout << "Y or N?\n", std::cin >> selection;
+        m_hospitalized = (selection == 'Y');
+
+        if (hospitalStd::Hospital::m_patientsList.rbegin() != hospitalStd::Hospital::m_patientsList.rend())
+            m_id = ((hospitalStd::Hospital::m_patientsList.rbegin())->first) + 1;
+        else
+            m_id = 1;
+        hospitalStd::Hospital::m_patientsList[m_id] = *this;
+
+        //creating an f stream object to read/write from/to files;
+        std::fstream f;
+        //creating a record in doctorsHistory.csv;
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patientsHistory.csv", std::ios::app);
+        f << m_firstName << "," << m_lastName << "," << m_gender << "," << m_age << "," << m_mobNumber << "," << m_address.encryptAddress() << "," << m_height << ","
+          << m_weight << "," << ((m_hospitalized) ? "Y" : "N") << "," << "Y" << "," << "N" << "\n";
+        f.close();
+
+        std::cout << "\n"
+                  << m_firstName << " " << m_lastName << " registered successfully!\n";
+        std::cout << "Their ID is: " << m_id << "\n";
+    }
+}// namespace patientStd
