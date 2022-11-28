@@ -111,4 +111,12 @@ namespace patientStd {
         std::cout << "Was Hospitalized? " << ((m_hospitalized) ? "Y" : "N") << "\n";
         std::cout << "Alive?          : " << ((m_alive) ? "Y" : "N") << "\n";
     }
+    void Patient::printDetailsFromHistory() {
+        personStd::Person::printDetailsFromHistory();
+        std::cout << "Height (cms)    : " << m_height << "\n";
+        std::cout << "Weight (pounds) : " << m_weight << "\n";
+        std::cout << "Was Hospitalized? " << ((m_hospitalized) ? "Y" : "N") << "\n";
+        std::cout << "Alive?          : " << ((m_alive) ? "Y" : "N") << "\n";
+        // will continue with this method soon
+    }
 }// namespace patientStd
