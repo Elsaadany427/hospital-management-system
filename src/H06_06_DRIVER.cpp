@@ -187,4 +187,7 @@ namespace driverStd {
             }
         }
     }
+    void Driver::getDetailsFromHistory() {
+        // will implement soon
+    }
 }
