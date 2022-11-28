@@ -18,9 +18,13 @@ const int MOD = 1e9 + 7;
 
 
 void solve(){
-    doctorStd::Doctor d;
+    patientStd::Patient d;
     d.fillMap();
-    d.addPerson();
+//    d.addPerson();
+//    d.hospitalize();
+    d.removePerson();
+    d.saveMap();
+
 }
 int main(){
 
