@@ -5,6 +5,7 @@
 #ifndef HOSPITAL_MANAGEMENT_SYSTEM_H03_03_DOCTOR_H
 #define HOSPITAL_MANAGEMENT_SYSTEM_H03_03_DOCTOR_H
 #include "H01_01_PERSON.h"
+#include "H08_08_APPOINTMENT.h"
 #include <bits/stdc++.h>
 
 namespace doctorStd {
@@ -12,6 +13,7 @@ namespace doctorStd {
     private:
         std::string m_type;
         int m_appointmentBooked;
+        friend class appointmentStd::Appointment;
 
     public:
         Doctor();

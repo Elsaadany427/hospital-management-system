@@ -13,10 +13,10 @@
 namespace appointmentStd {
     class Appointment : public personStd::Person {
     private:
-        int id;
-        doctorStd::Doctor doctor;
-        patientStd::Patient patient;
-        int hh;
+        int m_id;
+        doctorStd::Doctor m_doctor;
+        patientStd::Patient m_patient;
+        int hours; // hours -> start hour in 24-hour format;
     public:
         Appointment();
         ~Appointment();

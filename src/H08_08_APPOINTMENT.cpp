@@ -3,3 +3,8 @@
 //
 
 #include "H08_08_APPOINTMENT.h"
+namespace appointmentStd{
+        Appointment::Appointment() {
+            m_id = -1;
+        }
+};
