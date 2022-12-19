@@ -19,13 +19,16 @@ const int MOD = 1e9 + 7;
 
 
 void solve(){
-    Patient d;
+    Appointment a;
+    Doctor d;
+    Patient p;
+    p.fillMap();
     d.fillMap();
-//    d.addPerson();
-//    d.hospitalize();
-    d.removePerson();
-    d.saveMap();
+    Appointment::fillMap();
+    a.book();
 
+    Appointment::saveMap();
+    a.getDetails();
 }
 int main(){
 
