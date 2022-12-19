@@ -71,6 +71,7 @@ void Appointment::book()
 {
     if (Hospital::m_appointmentList.size() >= 8 * Hospital::m_doctorsList.size())
     {
+        std::cout << Hospital::m_appointmentList.size() << " " << Hospital::m_doctorsList.size() << "\n";
         std::cout << "\n\nSorry, no doctor is available for appointment today!\n\n";
         return;
     }
