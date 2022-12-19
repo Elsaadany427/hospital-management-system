@@ -6,7 +6,6 @@
 #include "H00_00_GLOBAL.h"
 #include "H04_04_HOSPITAL.h"
 
-//namespace patientStd {
 Patient::Patient() {
     m_id = -1;
     m_category = 2;
@@ -306,4 +305,3 @@ void Patient::removePerson() {
     rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/patientsHistory.csv");
     std::cout << m_firstName << " " << m_lastName << " removed successfully!\n";
 }
-//}// namespace patientStd

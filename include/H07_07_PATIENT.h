@@ -9,7 +9,6 @@
 
 class Appointment;
 
-//namespace patientStd {
 class Patient : public Person {
 private:
     int m_height;
@@ -32,5 +31,5 @@ public:
     void hospitalize();
     void reportADeath();
 };
-//}// namespace patientStd
+
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H07_07_PATIENT_H

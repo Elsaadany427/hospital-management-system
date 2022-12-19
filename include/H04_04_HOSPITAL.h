@@ -11,7 +11,6 @@
 #include "H08_08_APPOINTMENT.h"
 #include <bits/stdc++.h>
 
-//namespace hospitalStd {
 class Hospital {
 private:
     //map<id, object>

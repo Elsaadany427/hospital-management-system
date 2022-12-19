@@ -6,7 +6,6 @@
 #include "H00_00_GLOBAL.h"
 #include "H04_04_HOSPITAL.h"
 
-//namespace doctorStd {
 Doctor::Doctor() {
     m_id = -1;
     m_type = "";
@@ -227,5 +226,3 @@ void Doctor::removePerson() {
     rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctorsHistory.csv");
     std::cout << m_firstName << " " << m_lastName << " removed successfully!\n";
 }
-
-//}// namespace doctorStd
