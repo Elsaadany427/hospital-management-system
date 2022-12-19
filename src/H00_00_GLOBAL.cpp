@@ -3,6 +3,7 @@
 //
 
 #include "H00_00_GLOBAL.h"
+int yyyymmdd;
 
 int power(int n, int exp) {
     int res = 1;

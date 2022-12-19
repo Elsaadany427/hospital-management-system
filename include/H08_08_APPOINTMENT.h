@@ -14,16 +14,16 @@ private:
     int m_id;
     Doctor m_doctor;
     Patient m_patient;
-    int hours{};// hours -> start hour in 24-hour format;
+    int m_hours{};// hours -> start hour in 24-hour format;
 
 public:
     Appointment();
     ~Appointment();
-    void fillMap() ;
-    void saveMap() ;
+    static void fillMap() ;
+    static void saveMap() ;
     void printDetails() ;
     void getDetails() ;
     void book();
-    void fillDetails();
+//    void fillDetails();
 };
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H08_08_APPOINTMENT_H
