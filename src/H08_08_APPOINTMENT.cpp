@@ -3,6 +3,7 @@
 //
 
 #include "H08_08_APPOINTMENT.h"
+
 Appointment::Appointment() {
     m_id = -1;
     m_patient.m_id = -1;
