@@ -2,9 +2,9 @@
 // Created by elsaadany on 09/12/22.
 //
 
+#include "H08_08_APPOINTMENT.h"
 #include "H00_00_GLOBAL.h"
 #include "H04_04_HOSPITAL.h"
-#include "H08_08_APPOINTMENT.h"
 
 Appointment::Appointment() {
     m_id = -1;
@@ -21,7 +21,7 @@ void Appointment::fillMap() {
     f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv", std::ios::in);
     std::string copyDataFromFileAppointment;
     //skipping the first row containing column headers;
-    getline(f >> std::ws, copyDataFromFileAppointment );
+    getline(f >> std::ws, copyDataFromFileAppointment);
     //analyzing each entry afterwards;
     while (getline(f >> std::ws, copyDataFromFileAppointment)) {
         Appointment a;
@@ -56,4 +56,12 @@ void Appointment::saveMap() {
 
     remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv");
     rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv");
+}
+void Appointment::printDetails() {
+    if (m_id == -1)
+        return;
+    std::cout << "\n\n\nAppointment Details:\nID                 : " << m_id << "\n"
+              << "Patient's Name     : " + m_patient.m_firstName + " " + m_patient.m_lastName + "(ID = " << m_patient.m_id << ")\n"
+              << "Doctor's Name      : " + m_doctor.m_firstName + " " + m_doctor.m_lastName + "(ID = " << m_doctor.m_id << ")\n"
+              << "Time (24 Hr format): " << m_hours << ":00 Hrs to " << m_hours + 1 << ":00 Hrs\n\n";
 }
