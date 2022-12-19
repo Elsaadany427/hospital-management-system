@@ -24,6 +24,6 @@ public:
     void printDetails() ;
     void getDetails() ;
     void book();
-    void fillDetails();
+//    void fillDetails();
 };
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H08_08_APPOINTMENT_H

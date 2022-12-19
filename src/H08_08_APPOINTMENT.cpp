@@ -65,3 +65,103 @@ void Appointment::printDetails() {
               << "Doctor's Name      : " + m_doctor.m_firstName + " " + m_doctor.m_lastName + "(ID = " << m_doctor.m_id << ")\n"
               << "Time (24 Hr format): " << m_hours << ":00 Hrs to " << m_hours + 1 << ":00 Hrs\n\n";
 }
+
+void Appointment::book()
+{
+    if (Hospital::m_appointmentList.size() >= 8 * Hospital::m_doctorsList.size())
+    {
+        std::cout << "\n\nSorry, no doctor is available for appointment today!\n\n";
+        return;
+    }
+    std::cout << "\n\nIs the patient already registered (Y : Yes || N : No)?\n";
+    char ans;
+    std::cin >> ans;
+    while (ans != 'Y' && ans != 'N')
+    {
+        std::cout << "Y or N?\n";
+        std::cin >> ans;
+    }
+    if (ans == 'N')
+    {
+        std::cout << "Register the patient:\n";
+        m_patient.addPerson();
+    }
+    else
+    {
+        std::cout << "Search for the required patient:\n\n";
+        ans = 'Y';
+        while (ans == 'Y')
+        {
+            m_patient.getDetails();
+            ans = 'K';
+            if (m_patient.m_id == -1)
+            {
+                std::cout << "Try again (Y : Yes || N : No)?\n";
+                std::cin >> ans;
+                while (ans != 'Y' && ans != 'N')
+                {
+                    std::cout << "Y or N?\n";
+                    std::cin >> ans;
+                }
+            }
+        }
+        if (ans == 'N')
+        {
+            return;
+        }
+    }
+    std::cout << "\n\nNow, search for the required doctor:\n";
+    ans = 'Y';
+    while (ans == 'Y')
+    {
+        m_doctor.getDetails();
+        ans = 'K';
+        if (m_doctor.m_id == -1)
+        {
+            std::cout << "Try again (Y : Yes || N : No)?\n";
+            std::cin >> ans;
+            while (ans != 'Y' && ans != 'N')
+            {
+                std::cout << "Y or N?\n";
+                std::cin >> ans;
+            }
+        }
+        else if (m_doctor.m_appointmentBooked >= 8)
+        {
+            std::cout << "Sorry, selected doctor has no free slot left for the day!\n";
+            std::cout << "Search again (Y : Yes || N : No)?\n";
+            std::cin >> ans;
+            while (ans != 'Y' && ans != 'N')
+            {
+                std::cout << "Y or N?\n";
+                std::cin >> ans;
+            }
+        }
+    }
+    if (ans == 'N')
+    {
+        return;
+    }
+    if (Hospital::m_appointmentList.rbegin() != Hospital::m_appointmentList.rend())
+        m_id = ((Hospital::m_appointmentList.rbegin())->first) + 1;
+    else
+        m_id = 1;
+    m_hours = 9 + m_doctor.m_appointmentBooked;
+    Hospital::m_appointmentList[m_id] = *this;
+
+    Hospital::m_doctorsList[m_doctor.m_id].m_appointmentBooked++;
+    std::cout << "\nAppointment of patient " + m_patient.m_firstName + " " + m_patient.m_lastName + " with doctor "
+         << m_doctor.m_firstName << " " << m_doctor.m_lastName << " booked successfully!\n";
+    printDetails();
+}
+void Appointment::getDetails() {
+    std::cout << "\nEnter appointment ID:\n";
+    std::cin >> m_id;
+    if (Hospital::m_appointmentList.find(m_id) == Hospital::m_appointmentList.end())
+    {
+        std::cout << "\nInvalid appointment ID!\n";
+        m_id = -1;
+        return;
+    }
+    *this = Hospital::m_appointmentList[m_id];
+}
