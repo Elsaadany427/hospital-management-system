@@ -7,8 +7,8 @@
 #include "H01_01_PERSON.h"
 #include <bits/stdc++.h>
 
-namespace driverStd {
-    class Driver : public personStd::Person {
+//namespace driverStd {
+    class Driver : public Person {
     private:
         std::string m_licenceNumber;
         bool m_idle;
@@ -25,5 +25,5 @@ namespace driverStd {
         void getDetailsFromHistory() override;
         void removePerson() override;
     };
-}
+//}
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H06_06_DRIVER_H

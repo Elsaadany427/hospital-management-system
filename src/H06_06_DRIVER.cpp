@@ -5,7 +5,7 @@
 #include "H06_06_DRIVER.h"
 #include "H00_00_GLOBAL.h"
 #include "H04_04_HOSPITAL.h"
-namespace driverStd {
+//namespace driverStd {
     Driver::Driver() {
         m_id = -1;
         m_licenceNumber = "";
@@ -36,12 +36,12 @@ namespace driverStd {
             getline(s, d.m_licenceNumber, ',');
             getline(s, idle, ',');
 
-            d.m_id = globalStd::strToNum(driverId);
+            d.m_id = strToNum(driverId);
             d.m_gender = gender[0];
-            d.m_age = {(int16_t) (globalStd::strToNum(age))};
+            d.m_age = {(int16_t) (strToNum(age))};
             d.m_address.decryptAddress(address);
             d.m_idle = (idle == "Y");
-            hospitalStd::Hospital::m_driversList[d.m_id] = d;
+            Hospital::m_driversList[d.m_id] = d;
         }
         f.close();
     }
@@ -51,7 +51,7 @@ namespace driverStd {
         // `le first line containing column headers:
         f << "driverId,firstName,lastName,gender,age,mobNumber,address,licenceNumber,idle?\n";
 
-        for (const auto &i: hospitalStd::Hospital::m_driversList)
+        for (const auto &i: Hospital::m_driversList)
             f << i.second.m_id << "," << i.second.m_firstName << "," << i.second.m_lastName << "," << i.second.m_gender
               << "," << i.second.m_age << "," << i.second.m_mobNumber << "," << i.second.m_address.encryptAddress()
               << "," << i.second.m_licenceNumber << "," << (i.second.m_idle ? 'Y' : 'N') << "\n";
@@ -62,22 +62,22 @@ namespace driverStd {
     }
 
     void Driver::addPerson() {
-        if (hospitalStd::Hospital::m_driversList.size() == hospitalStd::Hospital::m_driversLimit) {
+        if (Hospital::m_driversList.size() == Hospital::m_driversLimit) {
             std::cout << "\n\nDriver limit reached, can't add more!\n\n";
             return;
         }
         //18 and 65 are the age limits for registration of a new doctor;
-        personStd::Person::addPerson(18, 65);
+        Person::addPerson(18, 65);
         if ((m_age < 18) || (m_age > 65))
             return;
         std::cout << "\nEnter the license number of the driver: \n";
         getline(std::cin >> std::ws, m_licenceNumber);
         // debug
-        if (hospitalStd::Hospital::m_driversList.rbegin() != hospitalStd::Hospital::m_driversList.rend())
-            m_id = ((hospitalStd::Hospital::m_driversList.rbegin())->first) + 1;
+        if (Hospital::m_driversList.rbegin() != Hospital::m_driversList.rend())
+            m_id = ((Hospital::m_driversList.rbegin())->first) + 1;
         else
             m_id = 1;
-        hospitalStd::Hospital::m_driversList[m_id] = *this;
+        Hospital::m_driversList[m_id] = *this;
 
         //creating an f stream object to read/write from/to files;
         std::fstream f;
@@ -93,12 +93,12 @@ namespace driverStd {
     }
 
     void Driver::printDetails() {
-        personStd::Person::printDetails();
+        Person::printDetails();
         std::cout << "License Number  : " << m_licenceNumber << "\n";
         std::cout << "Idle?           : " << (m_idle ? "Y\n" : "N\n");
     }
     void Driver::printDetailsFromHistory() {
-        personStd::Person::printDetailsFromHistory();
+        Person::printDetailsFromHistory();
         std::cout << "License Number  : " << m_licenceNumber << "\n";
         std::cout << "Idle?           : " << (m_idle ? "Y\n" : "N\n");
         // will continue with this method soon
@@ -115,8 +115,8 @@ namespace driverStd {
             int reqId = 0;
             std::cout << "Please enter the ID \n";
             std::cin >> reqId;
-            if (hospitalStd::Hospital::m_driversList.find(reqId) != hospitalStd::Hospital::m_driversList.end())
-                *this = hospitalStd::Hospital::m_driversList[reqId];
+            if (Hospital::m_driversList.find(reqId) != Hospital::m_driversList.end())
+                *this = Hospital::m_driversList[reqId];
             else
                 std::cout << "\nNo matching record found!\n";
         }
@@ -130,7 +130,7 @@ namespace driverStd {
 
             // vector for storing matched records
             std::vector<Driver> matchingRecords;
-            for (const auto &i: hospitalStd::Hospital::m_driversList) {
+            for (const auto &i: Hospital::m_driversList) {
                 if (i.second.m_firstName == fName && i.second.m_lastName == lName)
                     matchingRecords.push_back(i.second);
             }
@@ -144,8 +144,8 @@ namespace driverStd {
                     int reqId;
                     std::cout << "\nEnter the ID of the required driver: ";
                     std::cin >> reqId;
-                    if (hospitalStd::Hospital::m_driversList.find(reqId) != hospitalStd::Hospital::m_driversList.end())
-                        *this = hospitalStd::Hospital::m_driversList[reqId];
+                    if (Hospital::m_driversList.find(reqId) != Hospital::m_driversList.end())
+                        *this = Hospital::m_driversList[reqId];
                     else {
                         std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
                         std::cin >> selection;
@@ -161,7 +161,7 @@ namespace driverStd {
             std::cout << "Enter the License Number of driver required:\n";
             getline(std::cin >> std::ws, reqLicenceNum);
             std::vector<Driver> matchingRecords;
-            for (const auto &i: hospitalStd::Hospital::m_driversList) {
+            for (const auto &i: Hospital::m_driversList) {
                 if (i.second.m_licenceNumber == reqLicenceNum)
                     matchingRecords.push_back(i.second);
             }
@@ -175,8 +175,8 @@ namespace driverStd {
                     int reqId;
                     std::cout << "\nEnter the ID of the required driver: ";
                     std::cin >> reqId;
-                    if (hospitalStd::Hospital::m_driversList.find(reqId) != hospitalStd::Hospital::m_driversList.end())
-                        *this = hospitalStd::Hospital::m_driversList[reqId];
+                    if (Hospital::m_driversList.find(reqId) != Hospital::m_driversList.end())
+                        *this = Hospital::m_driversList[reqId];
                     else {
                         std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
                         std::cin >> selection;
@@ -200,7 +200,7 @@ namespace driverStd {
             std::cout << "\nSorry, the driver you selected to remove is NOT currently idle.\nOnly idlers can be removed.\n\n";
             return;
         }
-        hospitalStd::Hospital::m_driversList.erase(m_id);
+        Hospital::m_driversList.erase(m_id);
 
         std::string currentS, temp;
         std::stringstream str;
@@ -231,4 +231,4 @@ namespace driverStd {
         rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/driversHistory.csv");
         std::cout << m_firstName << " " << m_lastName << " removed successfully!\n";
     }
-}
+//}

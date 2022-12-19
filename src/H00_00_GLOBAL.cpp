@@ -3,7 +3,7 @@
 //
 
 #include "H00_00_GLOBAL.h"
-namespace globalStd {
+//namespace globalStd {
     int power(int n, int exp) {
         int res = 1;
         while (exp) {
@@ -20,4 +20,4 @@ namespace globalStd {
             res += ((s[s.size() - 1 - i] - '0') * power(10, i));
         return res;
     }
-}
+//}

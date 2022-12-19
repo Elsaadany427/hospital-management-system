@@ -7,14 +7,14 @@
 #include "H02_02_ADDRESS.h"
 #include <bits/stdc++.h>
 
-namespace personStd {
+//namespace personStd {
     class Person {
     protected:
         int m_id;
         std::string m_firstName, m_lastName;
         char m_gender;
         int16_t m_age;
-        addressStd::Address m_address;
+        Address m_address;
         std::string m_mobNumber;
         std::string m_catType;// "doctor"; patient; nurse; driver;
         int m_category;       // 1 2 3 4
@@ -32,5 +32,5 @@ namespace personStd {
         virtual void getDetailsFromHistory() = 0;
         virtual void removePerson() = 0;
     };
-}// namespace personStd
+//}// namespace personStd
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H01_01_PERSON_H

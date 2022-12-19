@@ -3,7 +3,7 @@
 //
 
 #include "H02_02_ADDRESS.h"
-namespace addressStd {
+//namespace addressStd {
     // Initialized Constructor
     Address::Address() {
         m_line1 = "";
@@ -73,4 +73,4 @@ namespace addressStd {
         getline(s, m_pinCode, '/');
         getline(s, m_country, '/');
     }
-}// namespace addressStd
+//}// namespace addressStd
