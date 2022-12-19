@@ -4,18 +4,19 @@
 
 #include "H04_04_HOSPITAL.h"
 #include "H03_03_DOCTOR.h"
-//namespace hospitalStd {
 //map<id, object>
 std::map<int, Doctor> Hospital::m_doctorsList;
 std::map<int, Nurse> Hospital::m_nursesList;
 std::map<int, Driver> Hospital::m_driversList;
 std::map<int, Patient> Hospital::m_patientsList;
+std::map<int, Appointment> Hospital::m_appointmentList;
 
 // Limits
 const int Hospital::m_doctorsLimit = 30;
 const int Hospital::m_nursesLimit = 50;
 const int Hospital::m_driversLimit = 50;
 const int Hospital::m_patientsLimit = 50;
+const int Hospital::m_appointmentLimit = 50;
 
 //defining declared methods;
 void Hospital::printDoctors() {
@@ -37,4 +38,8 @@ void Hospital::printPatients() {
     for (auto i: m_patientsList)
         i.second.printDetails(), std::cout << "\n";
 }
-//}
+
+void Hospital::printAppointments() {
+    for (auto i: m_appointmentList)
+        i.second.printDetails(), std::cout << "\n";
+}
