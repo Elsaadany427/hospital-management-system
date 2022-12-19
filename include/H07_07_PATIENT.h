@@ -1,18 +1,24 @@
 //
-// Created by elsaadany on 27/11/22.
+// Created by elsaadany on 28/11/22.
 //
 
-#ifndef HOSPITAL_MANAGEMENT_SYSTEM_H05_05_NURSE_H
-#define HOSPITAL_MANAGEMENT_SYSTEM_H05_05_NURSE_H
+#ifndef HOSPITAL_MANAGEMENT_SYSTEM_H07_07_PATIENT_H
+#define HOSPITAL_MANAGEMENT_SYSTEM_H07_07_PATIENT_H
 #include "H01_01_PERSON.h"
 #include <bits/stdc++.h>
 
-class Nurse : public Person {
+class Appointment;
+
+class Patient : public Person {
 private:
-    std::string m_type;
+    int m_height;
+    int m_weight;
+    bool m_hospitalized;
+    bool m_alive;
+    friend class Appointment;
 
 public:
-    Nurse();
+    Patient();
     void fillMap() override;
     void saveMap() override;
     void addPerson() override;
@@ -22,6 +28,8 @@ public:
     void getDetails() override { getDetails(0); };
     void getDetailsFromHistory() override;
     void removePerson() override;
+    void hospitalize();
+    void reportADeath();
 };
 
-#endif//HOSPITAL_MANAGEMENT_SYSTEM_H05_05_NURSE_H
+#endif//HOSPITAL_MANAGEMENT_SYSTEM_H07_07_PATIENT_H

@@ -4,6 +4,7 @@
 //وَمَا رَمَيْتَ إِذْ رَمَيْتَ وَلَٰكِنَّ اللَّهَ رَمَىٰ ۚ
 
 #include<bits/stdc++.h>
+#include "H08_08_APPOINTMENT.h"
 #include "H01_01_PERSON.h"
 #include "H03_03_DOCTOR.h"
 #include "H04_04_HOSPITAL.h"
@@ -18,9 +19,16 @@ const int MOD = 1e9 + 7;
 
 
 void solve(){
-    doctorStd::Doctor d;
+    Appointment a;
+    Doctor d;
+    Patient p;
+    p.fillMap();
     d.fillMap();
-    d.addPerson();
+    Appointment::fillMap();
+    a.book();
+
+    Appointment::saveMap();
+    a.getDetails();
 }
 int main(){
 
