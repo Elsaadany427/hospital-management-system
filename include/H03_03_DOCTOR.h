@@ -7,23 +7,26 @@
 #include "H01_01_PERSON.h"
 #include <bits/stdc++.h>
 
-namespace doctorStd {
-    class Doctor : public personStd::Person {
-    private:
-        std::string m_type;
-        int m_appointmentBooked;
+class Appointment;
 
-    public:
-        Doctor();
-        void fillMap() override;
-        void saveMap() override;
-        void addPerson() override;
-        void printDetails() override;
-        void printDetailsFromHistory() override;
-        void getDetails(int t_rec) override;
-        void getDetails() override {getDetails(0);};
-        void getDetailsFromHistory() override;
-        void removePerson() override;
-    };
-}// namespace doctorStd
+//namespace doctorStd {
+class Doctor : public Person {
+private:
+    std::string m_type;
+    int m_appointmentBooked;
+    friend class Appointment;
+
+public:
+    Doctor();
+    void fillMap() override;
+    void saveMap() override;
+    void addPerson() override;
+    void printDetails() override;
+    void printDetailsFromHistory() override;
+    void getDetails(int t_rec) override;
+    void getDetails() override { getDetails(0); };
+    void getDetailsFromHistory() override;
+    void removePerson() override;
+};
+//}
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H03_03_DOCTOR_H

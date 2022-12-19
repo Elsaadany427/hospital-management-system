@@ -6,7 +6,7 @@
 #define HOSPITAL_MANAGEMENT_SYSTEM_H02_02_ADDRESS_H
 #include <bits/stdc++.h>
 
-namespace addressStd {
+//namespace addressStd {
     class Address {
     private:
         std::string m_line1, m_line2;
@@ -22,5 +22,5 @@ namespace addressStd {
         std::string encryptAddress() const;
         void decryptAddress(const std::string& t_encryptedAddress);
     };
-}// namespace addressStd
+//}// namespace addressStd
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H02_02_ADDRESS_H

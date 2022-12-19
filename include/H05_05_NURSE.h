@@ -7,8 +7,8 @@
 #include "H01_01_PERSON.h"
 #include <bits/stdc++.h>
 
-namespace nurseStd {
-    class Nurse : public personStd::Person{
+//namespace nurseStd {
+    class Nurse : public Person{
     private:
         std::string m_type;
 
@@ -25,5 +25,5 @@ namespace nurseStd {
         void removePerson() override;
     };
 
-}
+//}
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H05_05_NURSE_H
