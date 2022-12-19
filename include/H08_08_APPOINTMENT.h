@@ -20,7 +20,7 @@ public:
     Appointment();
     ~Appointment();
     static void fillMap() ;
-    void saveMap() ;
+    static void saveMap() ;
     void printDetails() ;
     void getDetails() ;
     void book();

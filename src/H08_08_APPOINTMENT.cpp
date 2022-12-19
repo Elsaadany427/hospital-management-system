@@ -42,3 +42,18 @@ void Appointment::fillMap() {
     }
     f.close();
 }
+
+void Appointment::saveMap() {
+    std::fstream f;
+    f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
+    // `le first line containing column headers:
+    f << "appointmentId,date(YYYYMMDD),doctorId,patientId,startTime(in 24-hr format)\\n";
+
+    for (const auto &i: Hospital::m_appointmentList)
+        f << i.second.m_id << "," << yyyymmdd << "," << i.second.m_doctor.m_id << "," << i.second.m_patient.m_id
+          << "," << i.second.m_hours << "\n";
+    f.close();
+
+    remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv");
+    rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv");
+}
