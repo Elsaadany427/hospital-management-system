@@ -4,7 +4,7 @@
 
 #include "H04_04_HOSPITAL.h"
 #include "H03_03_DOCTOR.h"
-//namespace hospitalStd {
+
 //map<id, object>
 std::map<int, Doctor> Hospital::m_doctorsList;
 std::map<int, Nurse> Hospital::m_nursesList;
@@ -37,4 +37,3 @@ void Hospital::printPatients() {
     for (auto i: m_patientsList)
         i.second.printDetails(), std::cout << "\n";
 }
-//}

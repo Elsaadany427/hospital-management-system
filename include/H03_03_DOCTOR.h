@@ -9,7 +9,6 @@
 
 class Appointment;
 
-//namespace doctorStd {
 class Doctor : public Person {
 private:
     std::string m_type;
@@ -28,5 +27,4 @@ public:
     void getDetailsFromHistory() override;
     void removePerson() override;
 };
-//}
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H03_03_DOCTOR_H

@@ -10,7 +10,6 @@
 #include "H07_07_PATIENT.h"
 #include <bits/stdc++.h>
 
-//namespace hospitalStd {
 class Hospital {
 private:
     //map<id, object>
@@ -38,5 +37,4 @@ public:
     static void printPatients();
 };
 
-//}
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H04_04_HOSPITAL_H
