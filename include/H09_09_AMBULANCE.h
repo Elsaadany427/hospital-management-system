@@ -11,15 +11,15 @@ class Ambulance {
 private:
     int m_id;
     std::string m_model;
-    std::string m_idle;
+    std::string m_industrialist;
     std::string m_arn;// Ambulance registration number;
-    bool m_workless{};
+    bool m_idle{};
     Address m_address;
     Driver m_driver;
 
 public:
     Ambulance();
-    void fillMap();
+    static void fillMap();
     void saveMap();
     void addAmbulance();
     void printDetails();

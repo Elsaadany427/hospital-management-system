@@ -11,6 +11,7 @@ std::map<int, Nurse> Hospital::m_nursesList;
 std::map<int, Driver> Hospital::m_driversList;
 std::map<int, Patient> Hospital::m_patientsList;
 std::map<int, Appointment> Hospital::m_appointmentList;
+std::map<int, Ambulance> Hospital::m_ambulanceList;
 
 // Limits
 const int Hospital::m_doctorsLimit = 30;
@@ -18,6 +19,7 @@ const int Hospital::m_nursesLimit = 50;
 const int Hospital::m_driversLimit = 50;
 const int Hospital::m_patientsLimit = 50;
 const int Hospital::m_appointmentLimit = 50;
+const int Hospital::m_ambulanceLimit = 50;
 
 //defining declared methods;
 void Hospital::printDoctors() {
@@ -42,5 +44,10 @@ void Hospital::printPatients() {
 
 void Hospital::printAppointments() {
     for (auto i: m_appointmentList)
+        i.second.printDetails(), std::cout << "\n";
+}
+
+void Hospital::printAmbulances() {
+    for (auto i: m_ambulanceList)
         i.second.printDetails(), std::cout << "\n";
 }
