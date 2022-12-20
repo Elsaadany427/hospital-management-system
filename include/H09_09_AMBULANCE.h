@@ -23,7 +23,8 @@ public:
     static void saveMap();
     void addAmbulance();
     void printDetails();
-    void printDetailsFromHistory();
+    void printDetailsFromHistory(std::string t_extraDetails);
+    void printDetailsFromHistory(){printDetailsFromHistory("");};
     void getDetails(int t_rec);
     void getDetails() { getDetails(0); };
     void getDetailsFromHistory();
