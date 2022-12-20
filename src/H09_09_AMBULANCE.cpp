@@ -59,3 +59,33 @@ void Ambulance::saveMap() {
     remove("./data/ambulances.csv");
     rename("./data/temp.csv", "./data/ambulances.csv");
 }
+void Ambulance::addAmbulance() {
+    if (Hospital::m_ambulanceList.size() == Hospital::m_ambulanceLimit)
+    {
+        std::cout<<"\n\nAmbulances limit reached, can't add more!\n\n";
+        return;
+    }
+    //getting the basic details of the ambulance from the user side;
+    std::cout << "\nEnter Model of the ambulance:\n";
+    getline(std::cin >> std::ws, m_model);
+    std::cout << "\nEnter Manufacturer Name of the ambulance:\n";
+    getline(std::cin >> std::ws, m_industrialist);
+    std::cout << "\nEnter Vehicle Registration Number of the ambulance:\n";
+    getline(std::cin >> std::ws, m_arn);
+    if (Hospital::m_ambulanceList.rbegin() != Hospital::m_ambulanceList.rend())
+        m_id = ((Hospital::m_ambulanceList.rbegin())->first) + 1;
+    else
+        m_id = 1;
+    Hospital::m_ambulanceList[m_id] = *this;
+    
+    //creating a fstream object to read/write from/to files;
+    std::fstream f;
+    //creating a record in ambulancesHistory.csv;
+    f.open("./data/ambulancesHistory.csv", std::ios::app);
+    f << m_model << "," << m_industrialist << "," << m_arn << ",Y" << std::endl;
+    f.close();
+
+    std::cout << "\n"
+         << m_model << " by " << m_industrialist << " added successfully!\n";
+    std::cout << "Its ID is: " << m_id << "\n";
+}
