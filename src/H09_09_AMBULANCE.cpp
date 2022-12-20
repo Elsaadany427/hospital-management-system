@@ -41,3 +41,21 @@ void Ambulance::fillMap() {
     }
     f.close();
 }
+void Ambulance::saveMap() {
+    std::fstream f;
+    f.open("./data/temp.csv", std::ios::out);
+    // Skip first line containing column headers:
+    f << "ambulanceId,model,industrialist,arn,idle?,headedTowards(ifNotIdle),driverID(ifNotIdle)\n";
+    for (const auto& i : Hospital::m_ambulanceList)
+    {
+        f << i.second.m_id << "," << i.second.m_model << "," << i.second.m_industrialist << "," << i.second.m_arn
+          << "," << (i.second.m_idle ? ("Y,NA,NA\n") : ("N," + i.second.m_address.encryptAddress() + ","));
+        if (!(i.second.m_idle))
+        {
+            f << i.second.m_driver.m_id << std::endl;
+        }
+    }
+    f.close();
+    remove("./data/ambulances.csv");
+    rename("./data/temp.csv", "./data/ambulances.csv");
+}

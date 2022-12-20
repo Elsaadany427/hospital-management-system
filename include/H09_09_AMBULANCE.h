@@ -20,7 +20,7 @@ private:
 public:
     Ambulance();
     static void fillMap();
-    void saveMap();
+    static void saveMap();
     void addAmbulance();
     void printDetails();
     void printDetailsFromHistory();
