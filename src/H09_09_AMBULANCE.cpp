@@ -3,3 +3,8 @@
 //
 
 #include "H09_09_AMBULANCE.h"
+
+Ambulance::Ambulance() {
+    m_id = -1;
+    m_driver.m_id = -1;
+}
