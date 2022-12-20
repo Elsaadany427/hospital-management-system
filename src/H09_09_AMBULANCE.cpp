@@ -89,3 +89,19 @@ void Ambulance::addAmbulance() {
          << m_model << " by " << m_industrialist << " added successfully!\n";
     std::cout << "Its ID is: " << m_id << "\n";
 }
+void Ambulance::printDetails() {
+    if (m_id == -1)
+        return;
+    std::cout << "Details:\n";
+    std::cout << "ID              : " << m_id << "\n";
+    std::cout << "Manufacturer    : " << m_industrialist << "\n";
+    std::cout << "Model           : " << m_model << "\n";
+    std::cout << "Reg Number      : " << m_arn << "\n";
+    std::cout << "Idle?           : " << ((m_idle) ? "Y" : "N") << "\n";
+    if (!m_idle)
+    {
+        std::cout << "Going to Address: ";
+        m_address.printAddress();
+        std::cout << "Driver ID       : " << m_driver.m_id << "\n";
+    }
+}
