@@ -133,3 +133,70 @@ void Ambulance::printDetailsFromHistory(std::string t_extraDetails) {
     std::cout << "Reg. Number     : " << m_arn << "\n";
     std::cout << "Still owned?    : " << t_extraDetails << "\n";
 }
+
+void Ambulance::getDetails(int t_rec) {
+    int options = 0;
+    std::cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Model\n[3]: Filter by Ambulance Reg. Number\n\n";
+    std::cin >> options;
+    while (options != 1 && options != 2 && options != 3)
+        std::cout << "option 1, 2 or 3?\n", std::cin >> options;
+
+    // Filter by ID
+    if (options == 1) {
+        int reqId = 0;
+        std::cout << "Please enter the ID \n";
+        std::cin >> reqId;
+        if (Hospital::m_ambulanceList.find(reqId) != Hospital::m_ambulanceList.end())
+            *this = Hospital::m_ambulanceList[reqId];
+        else
+            std::cout << "\nNo matching record found!\n";
+    }
+    // Filter by model
+    else if (options == 2) {
+        std::string reqModel;
+        std::cout << "Model:\n";
+        getline(std::cin >> std::ws, reqModel);
+        // vector for storing matched records
+        std::vector<Ambulance> matchingRecords;
+        for (const auto &i: Hospital::m_ambulanceList) {
+            if (i.second.m_model == reqModel)
+                matchingRecords.push_back(i.second);
+        }
+        std::cout << "\n";
+        std::cout << matchingRecords.size() << " matching record(s) found!\n";
+        for (auto i: matchingRecords)
+            i.printDetails();
+        char selection = 'N';
+        if (matchingRecords.size() > t_rec) {
+            do {
+                int reqId;
+                std::cout << "\nEnter the ID of the required ambulance: ";
+                std::cin >> reqId;
+                if (Hospital::m_ambulanceList.find(reqId) != Hospital::m_ambulanceList.end())
+                    *this = Hospital::m_ambulanceList[reqId];
+                else {
+                    std::cout << "\nInvalid ID!\nTry again? (Y = Yes || N = No)\n";
+                    std::cin >> selection;
+                    while (selection != 'Y' || selection != 'N')
+                        std::cout << "Y or N?\n", std::cin >> selection;
+                }
+            } while (selection == 'Y');
+        }
+    }
+    //3: Filter by Ambulance reg. number;
+    else if (options == 3) {
+        std::string reqARN;
+        std::cout << "Enter the vehicle reg. number of ambulance required:\n";
+        getline(std::cin >> std::ws, reqARN);
+        for (const auto &i: Hospital::m_ambulanceList) {
+            if (i.second.m_arn == reqARN){
+                *this = i.second;
+                return ;
+            }
+        }
+        std::cout << "\nNo matching record found!\n";
+    }
+}
+void Ambulance::getDetailsFromHistory() {
+    // will implement soon
+}
