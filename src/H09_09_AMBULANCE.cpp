@@ -189,9 +189,9 @@ void Ambulance::getDetails(int t_rec) {
         std::cout << "Enter the vehicle reg. number of ambulance required:\n";
         getline(std::cin >> std::ws, reqARN);
         for (const auto &i: Hospital::m_ambulanceList) {
-            if (i.second.m_arn == reqARN){
+            if (i.second.m_arn == reqARN) {
                 *this = i.second;
-                return ;
+                return;
             }
         }
         std::cout << "\nNo matching record found!\n";
@@ -199,4 +199,52 @@ void Ambulance::getDetails(int t_rec) {
 }
 void Ambulance::getDetailsFromHistory() {
     // will implement soon
+}
+void Ambulance::sendAmbulance() {
+
+    //************* picking an idle ambulance *************;
+    bool gotOne = false;
+    int driverId;
+    for (const auto &i: Hospital::m_ambulanceList) {
+        if (i.second.m_idle) {
+            *this = i.second;
+            gotOne = true;
+            driverId = i.second.m_driver.m_id;
+            break;
+        }
+    }
+    if (!gotOne) {
+        std::cout << "No, idle ambulance found!"
+                  << "\n";
+        return;
+    }
+
+    if (!Hospital::m_driversList[driverId].m_idle) {
+        //*************  picking a free driver  *************;
+        gotOne = false;
+        for (const auto &i: Hospital::m_driversList) {
+            if (i.second.m_idle) {
+                m_driver = i.second;
+                gotOne = true;
+                break;
+            }
+        }
+        if (!gotOne) {
+            std::cout << "No, idle driver found!"
+                      << "\n";
+            return;
+        }
+    }
+    m_idle = false;
+
+    std::cout << "Enter destination address:\n";
+    m_address.takeAddress();
+
+    //updating status of ambulance;
+    Hospital::m_ambulanceList[m_id] = *this;
+
+    //updating status of driver;
+    Hospital::m_driversList[m_driver.m_id].m_idle = false;
+
+    std::cout << m_model << " by " << m_industrialist << " sent with driver " << m_driver.m_firstName << " " << m_driver.m_lastName << " (ID = " << m_driver.m_id << ") successfully!\n";
 }
