@@ -5,11 +5,8 @@
 
 #include<bits/stdc++.h>
 #include "H08_08_APPOINTMENT.h"
-#include "H01_01_PERSON.h"
 #include "H03_03_DOCTOR.h"
-#include "H04_04_HOSPITAL.h"
 //using namespace std;
-
 #define pb push_back
 
 typedef long long ll;
