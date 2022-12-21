@@ -8,6 +8,7 @@
 
 Ambulance::Ambulance() {
     m_id = -1;
+    m_address.decryptAddress("/////");
     m_driver.m_id = -1;
 }
 void Ambulance::fillMap() {
@@ -247,4 +248,17 @@ void Ambulance::sendAmbulance() {
     Hospital::m_driversList[m_driver.m_id].m_idle = false;
 
     std::cout << m_model << " by " << m_industrialist << " sent with driver " << m_driver.m_firstName << " " << m_driver.m_lastName << " (ID = " << m_driver.m_id << ") successfully!\n";
+}
+
+void Ambulance::reportArrival() {
+    getDetails();
+    Hospital::m_driversList[m_driver.m_id].m_idle = true;
+
+    //updating status of ambulance;
+    Hospital::m_ambulanceList[m_id].m_idle = true;
+    Hospital::m_ambulanceList[m_id].m_address.decryptAddress("/////");
+    Driver d;
+    Hospital::m_ambulanceList[m_id].m_driver = d;
+
+    std::cout << "\nStatus updated successfully!\n\n";
 }
