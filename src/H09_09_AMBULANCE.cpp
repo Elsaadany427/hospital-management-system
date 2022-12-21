@@ -134,7 +134,6 @@ void Ambulance::printDetailsFromHistory(std::string t_extraDetails) {
     std::cout << "Reg. Number     : " << m_arn << "\n";
     std::cout << "Still owned?    : " << t_extraDetails << "\n";
 }
-
 void Ambulance::getDetails(int t_rec) {
     int options = 0;
     std::cout << "\nOPTIONS:\n[1]: Filter by ID\n[2]: Filter by Model\n[3]: Filter by Ambulance Reg. Number\n\n";
@@ -249,7 +248,6 @@ void Ambulance::sendAmbulance() {
 
     std::cout << m_model << " by " << m_industrialist << " sent with driver " << m_driver.m_firstName << " " << m_driver.m_lastName << " (ID = " << m_driver.m_id << ") successfully!\n";
 }
-
 void Ambulance::reportArrival() {
     getDetails();
     Hospital::m_driversList[m_driver.m_id].m_idle = true;
@@ -261,4 +259,37 @@ void Ambulance::reportArrival() {
     Hospital::m_ambulanceList[m_id].m_driver = d;
 
     std::cout << "\nStatus updated successfully!\n\n";
+}
+void Ambulance::removeAmbulance() {
+    std::cout << "\nSearch for the ambulance you want to remove.\n";
+    getDetails();
+    if (m_id == -1)
+        return;
+    if (!m_idle) {
+        std::cout << "\nSorry, the ambulance you selected to remove is NOT currently idle.\nOnly idlers can be removed.\n\n";
+        return;
+    }
+    Hospital::m_doctorsList.erase(m_id);
+
+    std::string currentS, temp;
+    std::stringstream str;
+    std::fstream f, fOut;
+    str << m_model << "," << m_industrialist << "," << m_arn << ",Y\n";
+    getline(str, currentS);
+    f.open("./data/ambulancesHistory.csv", std::ios::in);
+    fOut.open("./data/temp.csv", std::ios::out);
+    while (getline(f, temp)) {
+        if (temp == currentS) {
+            fOut << m_model << "," << m_industrialist << "," << m_arn << ",N"
+                 << "\n";
+        } else
+            fOut << temp << "\n";
+    }
+    f.close();
+    fOut.close();
+    currentS.erase();
+    temp.erase();
+    remove("./data/ambulancesHistory.csv");
+    rename("./data/temp.csv", "./data/ambulancesHistory.csv");
+    std::cout << m_model << " by " << m_industrialist << " (VRN = " << m_arn << ") removed successfully!\n";
 }
