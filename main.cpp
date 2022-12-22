@@ -3,10 +3,10 @@
 //
 //وَمَا رَمَيْتَ إِذْ رَمَيْتَ وَلَٰكِنَّ اللَّهَ رَمَىٰ ۚ
 
+#include "H00_00_GLOBAL.h"
 #include "H03_03_DOCTOR.h"
 #include "H04_04_HOSPITAL.h"
 #include "H08_08_APPOINTMENT.h"
-#include "H00_00_GLOBAL.h"
 #include <bits/stdc++.h>
 using namespace std;
 #define pb push_back
@@ -340,7 +340,7 @@ void appointmentsMenu(Appointment &a) {
         getchar();
     } while (!exist);
 }
-void lastUsageDate(){
+void lastUsageDate() {
     fstream f;
     f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv", ios::in);
     string dataInsideFile, date, header;
@@ -370,8 +370,7 @@ void lastUsageDate(){
     cin >> yyyy;
     // update yyymmdd inside global
     yyyymmdd = yyyy * 10000 + mm * 100 + dd;
-    if ((date.empty())  || stoi(date) < yyyymmdd)
-    {
+    if ((date.empty()) || stoi(date) < yyyymmdd) {
         // remove all past appointments that booked
         f.open("./data/temp.csv", ios::out);
         f << header << "\n";
@@ -383,8 +382,7 @@ void lastUsageDate(){
         f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv", ios::in);
         getline(f, header);
         fout << header << endl;
-        while (getline(f, dataInsideFile))
-        {
+        while (getline(f, dataInsideFile)) {
             if (!dataInsideFile.empty())
                 dataInsideFile[dataInsideFile.size() - 1] = '0';
             fout << dataInsideFile << endl;
@@ -393,14 +391,32 @@ void lastUsageDate(){
         fout.close();
         remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv");
         rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv");
-    }
-    else if (stoi(date) > yyyymmdd && !date.empty())
-    {
+    } else if (stoi(date) > yyyymmdd && !date.empty()) {
         cout << "\nEntered date detected wrong!\nToday's date can't be older than the last usage date, which is : "
              << date.substr(6, 2) + "-" + date.substr(4, 2) + "-" + date.substr(0, 4) + "\n";
         return;
     }
 }
+
+// filling maps with data from csv files;
+void fillingMaps() {
+    // NOTE:
+    // fill drivers' Map before ambulances' Map;
+    // fill doctors' and patients' Map before appointments' Map;
+    Doctor d1;
+    Patient p;
+    Nurse n;
+    Driver d2;
+    Ambulance a1;
+    Appointment a2;
+    d1.fillMap();
+    p.fillMap();
+    n.fillMap();
+    d2.fillMap();
+    Ambulance::fillMap();
+    Appointment::fillMap();
+}
 int main() {
     lastUsageDate();
+    fillingMaps();
 }
