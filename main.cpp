@@ -69,6 +69,60 @@ void doctorMenu(Doctor d) {
         getchar();
     } while (!exist);
 };
+void nursesMenu(Nurse n){
+    bool exist = false;
+    do {
+        int choice;
+        cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "\nSelect an option:\n\n";
+
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "./HOME/NURSES\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "[01] : Register a new nurse\n";
+        cout << "[02] : Get nurse details\n";
+        cout << "[03] : Remove a nurse\n";
+        cout << "[04] : Fetch nurse details from history\n";
+        cout << "[05] : Get details of all registered nurses\n\n";
+        cout << "[-1] : Back\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                n.addPerson();
+                break;
+            case 2:
+                n.getDetails(1);
+                n.printDetails();
+                break;
+            case 3:
+                n.removePerson();
+                break;
+            case 4:
+                // Not working yet
+                n.getDetailsFromHistory();
+                cout << "// Not working yet\n";
+                break;
+            case 5:
+                Hospital::printNurses();
+                break;
+            case -1:
+                exist = true;
+                break;
+            default:
+                cout << "Invalid choice!\n";
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');// clearing cin buffer;
+
+        cout << endl;
+        cout << "\nPress ENTER to continue...\n";
+        cout << endl;
+
+        getchar();
+    } while (!exist);
+}
 int main() {
     Doctor d1;
     d1.fillMap();
