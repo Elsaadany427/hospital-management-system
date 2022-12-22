@@ -1,8 +1,4 @@
 firstName,lastName,gender,age,mobNumber,address,type,left?,reasonForLeaving(ifLeft)
 Hatem,Bassem,M,24,01003623286,elsawra/s/cairo/cairo/Egypt/Egypt,doctor,Y,keda
 Mohamed,Bassem,M,21,01003623286,HH/ss/dd/ss/dd/ff,dd,N,NA
-mmo,dd,M,22,001225,ss/dd/dd/d/d/d,d,Y,Because i test
-Ahmed,Bassem,M,19,01003623286,10th of Ramadan//Cairo/25255/12445/Egypt,geraha,N,NA
-Ahmed ,Bassem,M,19,0100232558,ss/ss/ss/ssd/22222/dddd,ddd,N,NA
-Ahmed,Bassem,M,19,0100025523,sss/ddd/ddd/ddd/dd/dd,ddd,N,NA
-Ahmed,Bassem,M,20,0100232556,ss/ddd/fsd/dd/1225/dd,ddd,N,NA
+mmo,dd,M,22,001225,ss/dd/dd/d/d/d,d,N,NA

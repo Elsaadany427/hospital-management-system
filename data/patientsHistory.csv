@@ -1,5 +1,2 @@
 firstName,lastName,gender,age,mobileNumber,address,height,weight,wasHospitalized?,stillAlive(ifHospitalized)?,discharged(ifHospitalized)?
 mohamed,bassem,M,22,0015225,dd/ss/df/ff/ff/ff,22,23,Y,Y,Y
-Hatem,Bassem,M,20,01003623286,Elsawra//10th Of Ramadan/cairo/12354/Egypt,190,61,Y,Y,N
-Bassem,Elsaadany,M,45,102588774,hhshs/dddh/ddd/dd/sss/ssss,175,100,Y,Y,N
-Hatem,Bassem,M,20,0225,ss/ss/ss/ss/ss/aaa,190,61,Y,Y,N

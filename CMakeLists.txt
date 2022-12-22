@@ -16,8 +16,6 @@ add_executable(hospital_management_system
         include/H05_05_NURSE.h
         include/H06_06_DRIVER.h
         include/H07_07_PATIENT.h
-        include/H08_08_APPOINTMENT.h
-        include/H09_09_AMBULANCE.h
         src/H00_00_GLOBAL.cpp
         src/H01_01_PERSON.cpp
         src/H02_02_ADDRESS.cpp
@@ -26,6 +24,4 @@ add_executable(hospital_management_system
         src/H05_05_NURSE.cpp
         src/H06_06_DRIVER.cpp
         src/H07_07_PATIENT.cpp
-        src/H08_08_APPOINTMENT.cpp
-        src/H09_09_AMBULANCE.cpp
         main.cpp)
