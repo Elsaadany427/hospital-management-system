@@ -1,1 +1,2 @@
-appointmentId,date(YYYYMMDD),doctorId,patientId,startTime(in 24-hr format)\n1,0,2,1,9
+appointmentId,date(YYYYMMDD),doctorId,patientId,startTime(in 24-hr format)
+2,0,2,1,13

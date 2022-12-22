@@ -340,24 +340,30 @@ void appointmentsMenu(Appointment &a) {
     } while (!exist);
 };
 int main() {
-    //    Doctor d1;
+    Doctor d1;
     //    Nurse n1;
     //    Driver dr;
-    //    Patient p;
-    Ambulance a;
-    //    d1.fillMap();
+    Patient p;
+    //    Ambulance a;
+    Appointment a;
+    d1.fillMap();
     //    n1.fillMap();
     //    dr.fillMap();
-    //    p.fillMap();
-    Ambulance::fillMap();
+    p.fillMap();
+    //    Ambulance::fillMap();
+    Appointment::fillMap();
     //    doctorMenu(d1);
     //    nursesMenu(n1);
     //    driversMenu(dr);
     //    patientsMenu(p);
-    ambulancesMenu(a);
+    //    ambulancesMenu(a);
+    appointmentsMenu(a);
     //    d1.saveMap();
     //    n1.saveMap();
     //    dr.saveMap();
     //    p.saveMap();
-    Ambulance::saveMap();
+    //    Ambulance::saveMap();
+    Appointment::saveMap();
+    d1.saveMap();
+    p.saveMap();
 }
