@@ -174,6 +174,68 @@ void driversMenu(Driver& d){
         getchar();
     } while (!exist);
 }
+
+void patientsMenu(Patient &p) {
+    bool exist = false;
+    do {
+        int choice;
+        cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "\nSelect an option:\n\n";
+
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "./HOME/PATIENTS\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "[01] : Register a new patient\n";
+        cout << "[02] : Get patient details\n";
+        cout << "[03] : Hospitalize a registered patient\n";
+        cout << "[04] : Report a patient's death\n";
+        cout << "[05] : Discharge a patient or their body\n";
+        cout << "[06] : Fetch patient details from history\n";
+        cout << "[07] : Get details of all registered patients\n\n";
+        cout << "[-1] : Back\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                p.addPerson();
+                break;
+            case 2:
+                p.getDetails(1);
+                break;
+            case 3:
+                p.hospitalize();
+                break;
+            case 4:
+                p.reportADeath();
+                break;
+            case 5:
+                p.removePerson();
+                break;
+            case 6:
+                // Not working yet
+                p.getDetailsFromHistory();
+                cout << "// Not working yet\n";
+                break;
+            case 7:
+                Hospital::printPatients();
+                break;
+            case -1:
+                exist = true;
+                break;
+            default:
+                cout << "Invalid choice!\n";
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');// clearing cin buffer;
+
+        cout << endl;
+        cout << "\nPress ENTER to continue...\n";
+        cout << endl;
+
+        getchar();
+    } while (!exist);
+}
 int main() {
 //    Doctor d1;
 //    Nurse n1;
