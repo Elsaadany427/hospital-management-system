@@ -7,11 +7,12 @@
 #include "H01_01_PERSON.h"
 #include <bits/stdc++.h>
 
+class Ambulance;
 class Driver : public Person {
 private:
     std::string m_licenceNumber;
     bool m_idle;
-
+    friend class Ambulance;
 public:
     Driver();
     void fillMap() override;

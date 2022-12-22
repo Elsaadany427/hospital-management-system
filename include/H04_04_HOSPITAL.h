@@ -9,6 +9,7 @@
 #include "H06_06_DRIVER.h"
 #include "H07_07_PATIENT.h"
 #include "H08_08_APPOINTMENT.h"
+#include "H09_09_AMBULANCE.h"
 #include <bits/stdc++.h>
 
 class Hospital {
@@ -19,6 +20,7 @@ private:
     static std::map<int, Driver> m_driversList;
     static std::map<int, Patient> m_patientsList;
     static std::map<int, Appointment> m_appointmentList;
+    static std::map<int, Ambulance> m_ambulanceList;
 
     // Limits
     static const int m_doctorsLimit;
@@ -26,6 +28,7 @@ private:
     static const int m_driversLimit;
     static const int m_patientsLimit;
     static const int m_appointmentLimit;
+    static const int m_ambulanceLimit;
 
     // Friend classes
     friend class Doctor;
@@ -33,6 +36,7 @@ private:
     friend class Driver;
     friend class Patient;
     friend class Appointment;
+    friend class Ambulance;
 
 public:
     static void printDoctors();
@@ -40,5 +44,6 @@ public:
     static void printDrivers();
     static void printPatients();
     static void printAppointments();
+    static void printAmbulances();
 };
 #endif//HOSPITAL_MANAGEMENT_SYSTEM_H04_04_HOSPITAL_H
