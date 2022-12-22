@@ -6,6 +6,7 @@
 #include "H03_03_DOCTOR.h"
 #include "H04_04_HOSPITAL.h"
 #include "H08_08_APPOINTMENT.h"
+#include "H00_00_GLOBAL.h"
 #include <bits/stdc++.h>
 using namespace std;
 #define pb push_back
@@ -67,7 +68,7 @@ void doctorMenu(Doctor &d) {
 
         getchar();
     } while (!exist);
-};
+}
 void nursesMenu(Nurse &n) {
     bool exist = false;
     do {
@@ -338,6 +339,68 @@ void appointmentsMenu(Appointment &a) {
 
         getchar();
     } while (!exist);
-};
+}
+void lastUsageDate(){
+    fstream f;
+    f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv", ios::in);
+    string dataInsideFile, date, header;
+    // header => appointmentId,date(YYYYMMDD),doctorId,patientId,startTime(in 24-hr format)
+    getline(f, header);
+    getline(f, dataInsideFile);
+    f.close();
+    stringstream str(dataInsideFile);
+    getline(str, date, ',');
+    getline(str, date, ',');
+    int dd, mm, yyyy;
+    if (!date.empty())
+        cout << "\n\n\nLast usage date (DD-MM-YYYY) : " << date.substr(6, 2) + "-" + date.substr(4, 2) + "-" + date.substr(0, 4) + "\n";
+    cout << "\nPlease Enter Today's Date (DD-MM-YYYY) :\n\nEnter Day: ";
+    cin >> dd;
+    while (dd < 1 || dd > 31) {
+        cout << "Invalid Day! Please enter a valid day: ";
+        cin >> dd;
+    }
+    cout << "Enter Month: ";
+    cin >> mm;
+    while (mm < 1 || mm > 12) {
+        cout << "Invalid Month! Please enter a valid month: ";
+        cin >> mm;
+    }
+    cout << "Enter Year (YYYY): ";
+    cin >> yyyy;
+    // update yyymmdd inside global
+    yyyymmdd = yyyy * 10000 + mm * 100 + dd;
+    if ((date.empty())  || stoi(date) < yyyymmdd)
+    {
+        // remove all past appointments that booked
+        f.open("./data/temp.csv", ios::out);
+        f << header << "\n";
+        f.close();
+        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv");
+        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/appointments.csv");
+        // Update all appointmentbooked = zero in doctors columns
+        fstream fout("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", ios::out);
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv", ios::in);
+        getline(f, header);
+        fout << header << endl;
+        while (getline(f, dataInsideFile))
+        {
+            if (!dataInsideFile.empty())
+                dataInsideFile[dataInsideFile.size() - 1] = '0';
+            fout << dataInsideFile << endl;
+        }
+        f.close();
+        fout.close();
+        remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv");
+        rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/doctors.csv");
+    }
+    else if (stoi(date) > yyyymmdd && !date.empty())
+    {
+        cout << "\nEntered date detected wrong!\nToday's date can't be older than the last usage date, which is : "
+             << date.substr(6, 2) + "-" + date.substr(4, 2) + "-" + date.substr(0, 4) + "\n";
+        return;
+    }
+}
 int main() {
+    lastUsageDate();
 }
