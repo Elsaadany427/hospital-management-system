@@ -15,7 +15,7 @@ const int MAX_N = 1e5 + 12;
 const int N = 2e5 + 5;
 const int MOD = 1e9 + 7;
 
-void doctorMenu(Doctor& d) {
+void doctorMenu(Doctor &d) {
     bool exist = false;
     do {
         int choice;
@@ -68,7 +68,7 @@ void doctorMenu(Doctor& d) {
         getchar();
     } while (!exist);
 };
-void nursesMenu(Nurse& n){
+void nursesMenu(Nurse &n) {
     bool exist = false;
     do {
         int choice;
@@ -121,7 +121,7 @@ void nursesMenu(Nurse& n){
         getchar();
     } while (!exist);
 }
-void driversMenu(Driver& d){
+void driversMenu(Driver &d) {
     bool exist = false;
     do {
         int choice;
@@ -236,17 +236,22 @@ void patientsMenu(Patient &p) {
         getchar();
     } while (!exist);
 }
+
 int main() {
-//    Doctor d1;
-//    Nurse n1;
-    Driver dr;
-//    d1.fillMap();
-//    n1.fillMap();
-    dr.fillMap();
-//    doctorMenu(d1);
-//    nursesMenu(n1);
-    driversMenu(dr);
-//    d1.saveMap();
-//    n1.saveMap();
-    dr.saveMap();
+    //    Doctor d1;
+    //    Nurse n1;
+    //    Driver dr;
+    Patient p;
+    //    d1.fillMap();
+    //    n1.fillMap();
+    //    dr.fillMap();
+    p.fillMap();
+    //    doctorMenu(d1);
+    //    nursesMenu(n1);
+    //    driversMenu(dr);
+    patientsMenu(p);
+    //    d1.saveMap();
+    //    n1.saveMap();
+    //    dr.saveMap();
+    p.saveMap();
 }

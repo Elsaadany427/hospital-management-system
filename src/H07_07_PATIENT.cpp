@@ -130,8 +130,10 @@ void Patient::getDetails(int t_rec) {
         int reqId = 0;
         std::cout << "Please enter the ID \n";
         std::cin >> reqId;
-        if (Hospital::m_patientsList.find(reqId) != Hospital::m_patientsList.end())
+        if (Hospital::m_patientsList.find(reqId) != Hospital::m_patientsList.end()) {
             *this = Hospital::m_patientsList[reqId];
+            printDetails();
+        }
         else
             std::cout << "\nNo matching record found!\n";
     }
@@ -256,7 +258,7 @@ void Patient::reportADeath() {
     temp.erase();
     remove("./data/patientsHistory.csv");
     rename("./data/temp.csv", "./data/patientsHistory.csv");
-    std::cout << m_firstName << " " << m_lastName << " hospitalized successfully!\n";
+    std::cout << m_firstName << " " << m_lastName << " reported dead, we hope their soul rests in peace, amen!\\n\n";
 }
 void Patient::removePerson() {
     std::cout << "\nSearch for the patient you want to remove.\n";
