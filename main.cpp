@@ -410,6 +410,19 @@ void fillingMaps(Doctor &d1, Patient &p, Nurse &n, Driver &d2) {
     Ambulance::fillMap();
     Appointment::fillMap();
 }
+
+// filling maps with data from csv files;
+void savingMaps(Doctor &d1, Patient &p, Nurse &n, Driver &d2) {
+    // NOTE:
+    // fill drivers' Map before ambulances' Map;
+    // fill doctors' and patients' Map before appointments' Map;
+    d1.saveMap();
+    p.saveMap();
+    n.saveMap();
+    d2.saveMap();
+    Ambulance::saveMap();
+    Appointment::saveMap();
+}
 int main() {
     Doctor d1;
     Patient p;
@@ -470,4 +483,5 @@ int main() {
         cout << endl;
         cout << choice << endl;
     }
+    savingMaps(d1, p, n, d2);
 }
