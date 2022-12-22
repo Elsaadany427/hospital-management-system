@@ -399,16 +399,10 @@ void lastUsageDate() {
 }
 
 // filling maps with data from csv files;
-void fillingMaps() {
+void fillingMaps(Doctor &d1, Patient &p, Nurse &n, Driver &d2) {
     // NOTE:
     // fill drivers' Map before ambulances' Map;
     // fill doctors' and patients' Map before appointments' Map;
-    Doctor d1;
-    Patient p;
-    Nurse n;
-    Driver d2;
-    Ambulance a1;
-    Appointment a2;
     d1.fillMap();
     p.fillMap();
     n.fillMap();
@@ -417,6 +411,63 @@ void fillingMaps() {
     Appointment::fillMap();
 }
 int main() {
+    Doctor d1;
+    Patient p;
+    Nurse n;
+    Driver d2;
+    Appointment a1;
+    Ambulance a2;
     lastUsageDate();
-    fillingMaps();
+    fillingMaps(d1, p, n, d2);
+    int choice = 0;
+    while (choice != -1) {
+        cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "\nSelect a category:\n\n";
+
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "./HOME\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "[01] : APPOINTMENTS\n";
+        cout << "[02] : PATIENTS\n";
+        cout << "[03] : DOCTORS\n";
+        cout << "[04] : NURSES\n";
+        cout << "[05] : DRIVERS\n";
+        cout << "[06] : AMBULANCES\n\n";
+        cout << "[-1] : EXIT\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "\n";
+        switch (choice) {
+            case -1:
+                cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+                cout << "\nShutting Down System...\n";
+                cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+                break;
+            case 1:
+                appointmentsMenu(a1);
+                break;
+            case 2:
+                patientsMenu(p);
+                break;
+            case 3:
+                doctorMenu(d1);
+                break;
+            case 4:
+                nursesMenu(n);
+                break;
+            case 5:
+                driversMenu(d2);
+                break;
+            case 6:
+                ambulancesMenu(a2);
+                break;
+            default:
+                cout << "\nInvalid Choice!\n";
+                break ;
+        }
+        cout << endl;
+        cout << choice << endl;
+    }
 }
