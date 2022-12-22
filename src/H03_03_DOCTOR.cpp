@@ -111,8 +111,10 @@ void Doctor::getDetails(int t_rec) {
         int reqId = 0;
         std::cout << "Please enter the ID \n";
         std::cin >> reqId;
-        if (Hospital::m_doctorsList.find(reqId) != Hospital::m_doctorsList.end())
+        if (Hospital::m_doctorsList.find(reqId) != Hospital::m_doctorsList.end()) {
             *this = Hospital::m_doctorsList[reqId];
+            printDetails();
+        }
         else
             std::cout << "\nNo matching record found!\n";
     }

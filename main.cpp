@@ -15,7 +15,7 @@ const int MAX_N = 1e5 + 12;
 const int N = 2e5 + 5;
 const int MOD = 1e9 + 7;
 
-void doctorMenu(Doctor d) {
+void doctorMenu(Doctor& d) {
     bool exist = false;
     do {
         int choice;
@@ -41,7 +41,6 @@ void doctorMenu(Doctor d) {
                 break;
             case 2:
                 d.getDetails(1);
-                d.printDetails();
                 break;
             case 3:
                 d.removePerson();
@@ -123,12 +122,13 @@ void nursesMenu(Nurse n){
     } while (!exist);
 }
 int main() {
-//    Doctor d1;
-    Nurse n1;
-//    d1.fillMap();
-    n1.fillMap();
-//    doctorMenu(d1);
-    nursesMenu(n1);
-    n1.saveMap();
+    Doctor d1;
+//    Nurse n1;
+    d1.fillMap();
+//    n1.fillMap();
+    doctorMenu(d1);
+//    nursesMenu(n1);
+    d1.saveMap();
+//    n1.saveMap();
 //    d1.saveMap();
 }
