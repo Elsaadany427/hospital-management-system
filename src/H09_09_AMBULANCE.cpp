@@ -146,8 +146,10 @@ void Ambulance::getDetails(int t_rec) {
         int reqId = 0;
         std::cout << "Please enter the ID \n";
         std::cin >> reqId;
-        if (Hospital::m_ambulanceList.find(reqId) != Hospital::m_ambulanceList.end())
+        if (Hospital::m_ambulanceList.find(reqId) != Hospital::m_ambulanceList.end()) {
             *this = Hospital::m_ambulanceList[reqId];
+            printDetails();
+        }
         else
             std::cout << "\nNo matching record found!\n";
     }
