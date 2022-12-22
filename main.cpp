@@ -95,7 +95,6 @@ void nursesMenu(Nurse n){
                 break;
             case 2:
                 n.getDetails(1);
-                n.printDetails();
                 break;
             case 3:
                 n.removePerson();
@@ -124,8 +123,12 @@ void nursesMenu(Nurse n){
     } while (!exist);
 }
 int main() {
-    Doctor d1;
-    d1.fillMap();
-    doctorMenu(d1);
-    d1.saveMap();
+//    Doctor d1;
+    Nurse n1;
+//    d1.fillMap();
+    n1.fillMap();
+//    doctorMenu(d1);
+    nursesMenu(n1);
+    n1.saveMap();
+//    d1.saveMap();
 }
