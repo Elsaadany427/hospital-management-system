@@ -55,8 +55,8 @@ void Ambulance::saveMap() {
         }
     }
     f.close();
-    remove("./data/ambulances.csv");
-    rename("./data/temp.csv", "./data/ambulances.csv");
+    remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/ambulances.csv");
+    rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/ambulances.csv");
 }
 void Ambulance::addAmbulance() {
     if (Hospital::m_ambulanceList.size() == Hospital::m_ambulanceLimit) {
@@ -79,7 +79,7 @@ void Ambulance::addAmbulance() {
     //creating a fstream object to read/write from/to files;
     std::fstream f;
     //creating a record in ambulancesHistory.csv;
-    f.open("./data/ambulancesHistory.csv", std::ios::app);
+    f.open("./media/elsaadany/Data/OOP/Example/hospital-management-system/data/ambulancesHistory.csv", std::ios::app);
     f << m_model << "," << m_industrialist << "," << m_arn << ",Y" << std::endl;
     f.close();
 
@@ -108,7 +108,7 @@ void Ambulance::printDetailsFromHistory(std::string t_extraDetails) {
     }
     if (t_extraDetails.empty()) {
         std::fstream f;
-        f.open("./data/driversHistory.csv", std::ios::in);
+        f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/driversHistory.csv", std::ios::in);
         std::string copyDataFromFileDriver;
         //skipping the first row containing column headers;
         getline(f >> std::ws, copyDataFromFileDriver);
@@ -291,7 +291,7 @@ void Ambulance::removeAmbulance() {
     fOut.close();
     currentS.erase();
     temp.erase();
-    remove("./data/ambulancesHistory.csv");
-    rename("./data/temp.csv", "./data/ambulancesHistory.csv");
+    remove("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/ambulancesHistory.csv");
+    rename("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", "/media/elsaadany/Data/OOP/Example/hospital-management-system/data/ambulancesHistory.csv");
     std::cout << m_model << " by " << m_industrialist << " (VRN = " << m_arn << ") removed successfully!\n";
 }
