@@ -36,8 +36,8 @@ void Appointment::fillMap() {
         getline(s, patientId, ',');
         getline(s, startTime, ',');
         a.m_id = strToNum(doctorId);
-        a.m_doctor = Hospital::m_doctorsList[0];
-        a.m_patient = Hospital::m_patientsList[0];
+        a.m_doctor = Hospital::m_doctorsList[strToNum(doctorId)];
+        a.m_patient = Hospital::m_patientsList[strToNum(patientId)];
         a.m_hours = strToNum(startTime);
         Hospital::m_appointmentList[a.m_id] = a;
     }
@@ -48,7 +48,7 @@ void Appointment::saveMap() {
     std::fstream f;
     f.open("/media/elsaadany/Data/OOP/Example/hospital-management-system/data/temp.csv", std::ios::out);
     // `le first line containing column headers:
-    f << "appointmentId,date(YYYYMMDD),doctorId,patientId,startTime(in 24-hr format)\\n";
+    f << "appointmentId,date(YYYYMMDD),doctorId,patientId,startTime(in 24-hr format)\n";
 
     for (const auto &i: Hospital::m_appointmentList)
         f << i.second.m_id << "," << yyyymmdd << "," << i.second.m_doctor.m_id << "," << i.second.m_patient.m_id
@@ -71,7 +71,6 @@ void Appointment::book()
 {
     if (Hospital::m_appointmentList.size() >= 8 * Hospital::m_doctorsList.size())
     {
-        std::cout << Hospital::m_appointmentList.size() << " " << Hospital::m_doctorsList.size() << "\n";
         std::cout << "\n\nSorry, no doctor is available for appointment today!\n\n";
         return;
     }
@@ -166,4 +165,5 @@ void Appointment::getDetails() {
         return;
     }
     *this = Hospital::m_appointmentList[m_id];
+    printDetails();
 }
