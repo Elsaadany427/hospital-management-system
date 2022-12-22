@@ -4,41 +4,50 @@
 
 #include "H04_04_HOSPITAL.h"
 #include "H03_03_DOCTOR.h"
-namespace hospitalStd {
-    //map<id, object>
-    std::map<int, doctorStd::Doctor> Hospital::m_doctorsList;
-    std::map<int, nurseStd::Nurse> Hospital::m_nursesList;
-    std::map<int,driverStd::Driver> Hospital::m_driversList;
-    std::map<int,patientStd::Patient> Hospital::m_patientsList;
 
-    // Limits
-    const int Hospital::m_doctorsLimit = 30;
-    const int Hospital::m_nursesLimit = 50;
-    const int Hospital::m_driversLimit = 50;
-    const int Hospital::m_patientsLimit = 50;
+//map<id, object>
+std::map<int, Doctor> Hospital::m_doctorsList;
+std::map<int, Nurse> Hospital::m_nursesList;
+std::map<int, Driver> Hospital::m_driversList;
+std::map<int, Patient> Hospital::m_patientsList;
+std::map<int, Appointment> Hospital::m_appointmentList;
+std::map<int, Ambulance> Hospital::m_ambulanceList;
 
-    //defining declared methods;
-    void Hospital::printDoctors()
-    {
-        for (auto i : m_doctorsList)
-            i.second.printDetails(), std::cout << "\n";
-    }
+// Limits
+const int Hospital::m_doctorsLimit = 30;
+const int Hospital::m_nursesLimit = 50;
+const int Hospital::m_driversLimit = 50;
+const int Hospital::m_patientsLimit = 50;
+const int Hospital::m_appointmentLimit = 50;
+const int Hospital::m_ambulanceLimit = 50;
 
-    void Hospital::printNurses()
-    {
-        for (auto i : m_nursesList)
-            i.second.printDetails(), std::cout << "\n";
-    }
+//defining declared methods;
+void Hospital::printDoctors() {
+    for (auto i: m_doctorsList)
+        i.second.printDetails(), std::cout << "\n";
+}
 
-    void Hospital::printDrivers()
-    {
-        for (auto i : m_driversList)
-            i.second.printDetails(), std::cout << "\n";
-    }
+void Hospital::printNurses() {
+    for (auto i: m_nursesList)
+        i.second.printDetails(), std::cout << "\n";
+}
 
-    void Hospital::printPatients()
-    {
-        for (auto i : m_patientsList)
-            i.second.printDetails(), std::cout << "\n";
-    }
+void Hospital::printDrivers() {
+    for (auto i: m_driversList)
+        i.second.printDetails(), std::cout << "\n";
+}
+
+void Hospital::printPatients() {
+    for (auto i: m_patientsList)
+        i.second.printDetails(), std::cout << "\n";
+}
+
+void Hospital::printAppointments() {
+    for (auto i: m_appointmentList)
+        i.second.printDetails(), std::cout << "\n";
+}
+
+void Hospital::printAmbulances() {
+    for (auto i: m_ambulanceList)
+        i.second.printDetails(), std::cout << "\n";
 }
