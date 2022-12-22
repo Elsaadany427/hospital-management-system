@@ -174,7 +174,6 @@ void driversMenu(Driver &d) {
         getchar();
     } while (!exist);
 }
-
 void patientsMenu(Patient &p) {
     bool exist = false;
     do {
@@ -297,25 +296,74 @@ void ambulancesMenu(Ambulance &a) {
         getchar();
     } while (!exist);
 }
+void appointmentsMenu(Appointment &a) {
+    bool exist = false;
+    do {
+        int choice;
+        cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "\nSelect an option:\n\n";
+
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "./HOME/APPOINTMENTS\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "[01] : Book an appointment\n";
+        cout << "[02] : Get appointment details\n";
+        cout << "[03] : Show all appointments\n\n";
+        cout << "[-1] : Back\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                a.book();
+                break;
+            case 2:
+                a.getDetails();
+                break;
+            case 3:
+                Hospital::printAppointments();
+                break;
+            case -1:
+                exist = true;
+                break;
+            default:
+                cout << "Invalid choice!\n";
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');// clearing cin buffer;
+
+        cout << endl;
+        cout << "\nPress ENTER to continue...\n";
+        cout << endl;
+
+        getchar();
+    } while (!exist);
+};
 int main() {
-    //    Doctor d1;
+    Doctor d1;
     //    Nurse n1;
     //    Driver dr;
-    //    Patient p;
-    Ambulance a;
-    //    d1.fillMap();
+    Patient p;
+    //    Ambulance a;
+    Appointment a;
+    d1.fillMap();
     //    n1.fillMap();
     //    dr.fillMap();
-    //    p.fillMap();
-    Ambulance::fillMap();
+    p.fillMap();
+    //    Ambulance::fillMap();
+    Appointment::fillMap();
     //    doctorMenu(d1);
     //    nursesMenu(n1);
     //    driversMenu(dr);
     //    patientsMenu(p);
-    ambulancesMenu(a);
+    //    ambulancesMenu(a);
+    appointmentsMenu(a);
     //    d1.saveMap();
     //    n1.saveMap();
     //    dr.saveMap();
     //    p.saveMap();
-    Ambulance::saveMap();
+    //    Ambulance::saveMap();
+    Appointment::saveMap();
+    d1.saveMap();
+    p.saveMap();
 }
