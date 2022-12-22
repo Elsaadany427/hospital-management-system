@@ -175,13 +175,16 @@ void driversMenu(Driver& d){
     } while (!exist);
 }
 int main() {
-    Doctor d1;
+//    Doctor d1;
 //    Nurse n1;
-    d1.fillMap();
+    Driver dr;
+//    d1.fillMap();
 //    n1.fillMap();
-    doctorMenu(d1);
+    dr.fillMap();
+//    doctorMenu(d1);
 //    nursesMenu(n1);
-    d1.saveMap();
-//    n1.saveMap();
+    driversMenu(dr);
 //    d1.saveMap();
+//    n1.saveMap();
+    dr.saveMap();
 }
