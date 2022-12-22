@@ -15,7 +15,7 @@ const int MAX_N = 1e5 + 12;
 const int N = 2e5 + 5;
 const int MOD = 1e9 + 7;
 
-void doctorMenu() {
+void doctorMenu(Doctor d) {
     bool exist = false;
     do {
         int choice;
@@ -35,32 +35,32 @@ void doctorMenu() {
         cout << "Enter your choice: ";
         cin >> choice;
 
-        // creating object
-        Doctor d;
         switch (choice) {
             case 1:
                 d.addPerson();
-                break ;
+                break;
             case 2:
                 d.getDetails(1);
                 d.printDetails();
-                break ;
+                break;
             case 3:
                 d.removePerson();
-                break ;
+                break;
             case 4:
+                // Not working yet
                 d.getDetailsFromHistory();
-                break ;
+                cout << "// Not working yet\n";
+                break;
             case 5:
                 Hospital::printDoctors();
-                break ;
+                break;
             case -1:
                 exist = true;
-                break ;
+                break;
             default:
                 cout << "Invalid choice!\n";
         }
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // clearing cin buffer;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');// clearing cin buffer;
 
         cout << endl;
         cout << "\nPress ENTER to continue...\n";
@@ -70,4 +70,8 @@ void doctorMenu() {
     } while (!exist);
 };
 int main() {
+    Doctor d1;
+    d1.fillMap();
+    doctorMenu(d1);
+    d1.saveMap();
 }
