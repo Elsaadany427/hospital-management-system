@@ -301,17 +301,21 @@ int main() {
     //    Doctor d1;
     //    Nurse n1;
     //    Driver dr;
-    Patient p;
+    //    Patient p;
+    Ambulance a;
     //    d1.fillMap();
     //    n1.fillMap();
     //    dr.fillMap();
-    p.fillMap();
+    //    p.fillMap();
+    Ambulance::fillMap();
     //    doctorMenu(d1);
     //    nursesMenu(n1);
     //    driversMenu(dr);
-    patientsMenu(p);
+    //    patientsMenu(p);
+    ambulancesMenu(a);
     //    d1.saveMap();
     //    n1.saveMap();
     //    dr.saveMap();
-    p.saveMap();
+    //    p.saveMap();
+    Ambulance::saveMap();
 }
