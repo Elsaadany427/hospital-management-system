@@ -68,7 +68,7 @@ void doctorMenu(Doctor& d) {
         getchar();
     } while (!exist);
 };
-void nursesMenu(Nurse n){
+void nursesMenu(Nurse& n){
     bool exist = false;
     do {
         int choice;
@@ -105,6 +105,59 @@ void nursesMenu(Nurse n){
                 break;
             case 5:
                 Hospital::printNurses();
+                break;
+            case -1:
+                exist = true;
+                break;
+            default:
+                cout << "Invalid choice!\n";
+        }
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');// clearing cin buffer;
+
+        cout << endl;
+        cout << "\nPress ENTER to continue...\n";
+        cout << endl;
+
+        getchar();
+    } while (!exist);
+}
+void driversMenu(Driver& d){
+    bool exist = false;
+    do {
+        int choice;
+        cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "\nSelect an option:\n\n";
+
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "./HOME/DRIVERS\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        cout << "[01] : Register a new driver\n";
+        cout << "[02] : Get driver details\n";
+        cout << "[03] : Remove a driver\n";
+        cout << "[04] : Fetch driver details from history\n";
+        cout << "[05] : Get details of all registered drivers\n\n";
+        cout << "[-1] : Back\n";
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                d.addPerson();
+                break;
+            case 2:
+                d.getDetails(1);
+                break;
+            case 3:
+                d.removePerson();
+                break;
+            case 4:
+                // Not working yet
+                d.getDetailsFromHistory();
+                cout << "// Not working yet\n";
+                break;
+            case 5:
+                Hospital::printDrivers();
                 break;
             case -1:
                 exist = true;

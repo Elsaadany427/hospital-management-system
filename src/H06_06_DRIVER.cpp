@@ -115,8 +115,10 @@ void Driver::getDetails(int t_rec) {
         int reqId = 0;
         std::cout << "Please enter the ID \n";
         std::cin >> reqId;
-        if (Hospital::m_driversList.find(reqId) != Hospital::m_driversList.end())
+        if (Hospital::m_driversList.find(reqId) != Hospital::m_driversList.end()) {
             *this = Hospital::m_driversList[reqId];
+            printDetails();
+        }
         else
             std::cout << "\nNo matching record found!\n";
     }
